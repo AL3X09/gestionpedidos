@@ -32,47 +32,55 @@ $(document).ready(function () {
     );
     //escuchar change1
     $("#selectFormaPago").change(function () {
-        var eleccion=$( this ).val();
-        
-        
-        if (eleccion==1){//si efectivo
-            $("#conefectivo").show( "slow" );
+        var eleccion = $(this).val();
+
+
+        if (eleccion == 1) {//si efectivo
+            $("#conefectivo").show("slow");
             $("#conTarjeta").hide();
             $("#creditodirecto").hide();
             $("#diferirA").hide();
-            $("#totalPagar").hide();
-        }else if (eleccion==2){//si tajeta
-            $("#conefectivo").hide( "slow" );
+            var valorProducto = $("#valor").val();
+            var cantidad = $("#unidades").val();
+            var GRANTOTAL = valorProducto * cantidad
+            $("#totalPagar").show();
+            $("#calculoValor1").html(GRANTOTAL);
+            $("#calculoValor2").html(GRANTOTAL);
+
+        } else if (eleccion == 2) {//si tajeta
+            $("#conefectivo").hide("slow");
             $("#contarjeta").show();
             $("#creditodirecto").hide();
             $("#diferirA").show();
-        }else if (eleccion==3){//si directo
-            $("#conefectivo").hide( "slow" );
+        } else if (eleccion == 3) {//si directo
+            $("#conefectivo").hide("slow");
             $("#contarjeta").hide();
             $("#creditodirecto").show();
             $("#diferirA").show();
-        }else{
-            $("#conefectivo").hide( "slow" );
+        } else {
+            $("#conefectivo").hide("slow");
             $("#conTarjeta").hide();
             $("#creditodirecto").hide();
             $("#diferirA").hide();
         }
     });
-    
+
     //escuchar change2 diferir a 
     $("#selectTipoPago").change(function () {
-        var eleccion2=$( this ).val();
-        var valorProducto=$("#valor").val();
-        
-        if (eleccion2==1){//si quincenal
-            //var total1=valorProducto/12;
-            //var total2=total1/15;
+        var eleccion2 = $(this).val();
+        var valorProducto = $("#valor").val();
+        var cantidad = $("#unidades").val();
+        var GRANTOTAL = valorProducto * cantidad
+
+        if (eleccion2 == 1) {//si quincenal
             $("#totalPagar").show();
-            $("#calculoValor").html(valorProducto/24);
-        }else if (eleccion2==2){//si mensual
+            $("#calculoValor1").html(GRANTOTAL);
+            $("#calculoValor2").html(GRANTOTAL / 24);
+        } else if (eleccion2 == 2) {//si mensual
             $("#totalPagar").show();
-            $("#calculoValor").html(valorProducto/12);
-        }else{
+            $("#calculoValor1").html(GRANTOTAL);
+            $("#calculoValor2").html(GRANTOTAL / 12);
+        } else {
             $("#totalPagar").hide();
         }
     });
@@ -158,7 +166,9 @@ function modalPago(id) {
             $("#imagen").attr("src", baseUrl + v.imagen);
             $("#nombre").val(v.nombre);
             $("#valor").val(v.presio_unidad);
-            //$("#unidades").val(v.cantidad);            
+            //$("#unidades").val(v.cantidad);
+            $('#unidades').empty();
+            $('#unidades').append('<option value="" disabled selected>Seleccione...</option>');
             for (i = 1; i <= v.cantidad; i++) {
                 $('#unidades').append($("<option></option>").val(i).html(i));
             }

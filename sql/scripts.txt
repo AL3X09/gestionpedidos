@@ -1,0 +1,27 @@
+CREATE TABLE `gestionproductos`.`pedido` (
+  `idpedido` INT NOT NULL AUTO_INCREMENT,
+  `consecutivo` INT NOT NULL,
+  `fkUsuario` INT NOT NULL,
+  `fkProducto` INT NOT NULL,
+  `unidades_vendidas` INT NULL,
+  `fkFormaPago` INT NULL,
+  `fkTipoPago` INT NULL,
+  `totalPagado` BIGINT(20) NULL,
+  `diferidoAPagar` BIGINT(20) NULL,
+  `numeroPedido` BIGINT(50) NULL,
+  `flEstado` INT NOT NULL DEFAULT 1,
+  PRIMARY KEY (`idpedido`))
+COMMENT = 'mantiene los datos del pedido';
+///
+USE `gestionproductos`;
+DROP procedure IF EXISTS `insertPago`;
+
+DELIMITER $$
+USE `gestionproductos`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertPago` (IN `consecutivo` INT,IN `fkusuario` INT,IN `fkProducto` INT,IN `unidades_vendidas` INT,IN `fkFormaPago` INT,IN `fkTipoPago` INT,IN `totalPagado` INT,IN `diferidoAPagar` INT,IN `numeroPedido` INT )
+BEGIN
+INSERT INTO pago
+VALUES(NULL,`consecutivo`,`fkusuario`,`fkProducto`,`unidades_vendidas`,`fkFormaPago`,`fkTipoPago`,`totalPagado`,`diferidoAPagar`,`numeroPedido`,1);
+END$$
+
+DELIMITER ;

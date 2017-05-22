@@ -96,7 +96,7 @@
                         </div>
                         <div class="input-field col s12 m6">
                             <input placeholder="ingrese valor" id="valor" name="valor" type="text" class="validate" disabled >
-                            <label for="first_name">Valor</label>
+                            <label for="first_name">Valor por Unidad</label>
                         </div>
                         <div class="input-field col s12 m6">
                             <select id="unidades" name="unidades">
@@ -140,17 +140,23 @@
                                 <select id="selectTipoPago" name="selectTipoPago">
                                     <option value="" disabled selected>Seleccione...</option>
                                 </select>
-                                <label for="first_name">Diferir Pago Anual a</label>
+                                <label for="first_name">Pago Diferido</label>
                             </div>
                         </div>
                         <!--  campo muestra total a pagar  -->
                         <div id="totalPagar" style="display: none">
                             <div class="input-field col s12 m6">
-                                
-                                <label for="first_name" class="black-text">El Monto a pagar es $<span id="calculoValor" ></span></label>
+                                <label for="first_name" class="black-text">El Monto a pagar Total es $<span id="calculoValor1" ></span> (cop)</label>
+                             </div>
+                            <div class="input-field col s12 m6">
+                                <label for="first_name" class="black-text">El Monto a pagar segun diferido es $<span id="calculoValor2" ></span> (cop)</label>
                             </div>
                         </div>
                     </div>
+                    <input  id="usarioPidio" name="usarioPidio" type="hidden">
+                    <input  id="productoPidio" name="productoPidio" type="hidden">
+                    <input  id="valorTotal" name="valorTotal" type="hidden">
+                    <input  id="valorDiferido" name="valorDiferido" type="hidden">
                 </form>
             </div>
             <div class="modal-footer">

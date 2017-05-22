@@ -12,6 +12,10 @@ class Login extends CI_Controller {
     }
 
     public function index() {
+      if (!isset($_SESSION["usuario"])) {
+            session_start();
+        }
+      
         $this->load->view('inicio');
     }
 

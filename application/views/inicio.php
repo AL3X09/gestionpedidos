@@ -85,7 +85,7 @@
         <!-- Modal Structure -->
         <div id="modalCuenta" class="modal">
             <div class="modal-content">
-                <form id="formcuentausuario">
+                <form id="formpedidousuario">
                     <div class="row">
                         <div class="input-field col s6 m6" >
                             <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" width="250" id="imagen">
@@ -114,7 +114,7 @@
                         <div id="contarjeta" style="display: none">
                             <div class="input-field col s12 m6">
                                 <input placeholder="ingrese valor" id="numCuenta" name="numCuenta" type="text" class="validate">
-                                <label for="first_name">Numero Cuenta</label>
+                                <label for="first_name">Numero Tarjeta</label>
                             </div>                            
                         </div>
                         <!-- fin si paga con tarjeta  -->
@@ -148,6 +148,8 @@
                             <div class="input-field col s12 m6">
                                 <label for="first_name" class="black-text">El Monto a pagar Total es $<span id="calculoValor1" ></span> (cop)</label>
                              </div>
+                          <br/>
+                          <br/>
                             <div class="input-field col s12 m6">
                                 <label for="first_name" class="black-text">El Monto a pagar segun diferido es $<span id="calculoValor2" ></span> (cop)</label>
                             </div>
@@ -160,8 +162,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Cancelar</a>
-                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Comprar</a>
+                <a  class="modal-action modal-close waves-effect waves-red btn-flat ">Cancelar</a>
+                <a  class="modal-action modal-close waves-effect waves-green btn-flat" onclick="solicitarPedido()">Comprar</a>
             </div>
         </div>
 

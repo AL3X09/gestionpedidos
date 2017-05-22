@@ -9,7 +9,7 @@ $(document).ready(function() {
 
 function acceder() {
     $.ajax({
-        url: baseUrl + 'Administracion/acceder',
+        url: baseUrl + 'Login/acceder',
         method: 'POST',
         data: $("#loginForm").serialize(),
         success: function (data) {
@@ -19,10 +19,6 @@ function acceder() {
             });
         }
     });
-}
-function editar() {
-    var $toastContent = $("<span>Formulario no funcional</span>");
-    Materialize.toast($toastContent, 5000);
 }
 
 

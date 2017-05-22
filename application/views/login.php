@@ -1,35 +1,30 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<!-- CSS  -->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!-- CSS  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+<link rel="stylesheet" href="<?php echo base_url(); ?>iconfont/material-icons.css">
 <link href="<?php echo base_url(); ?>css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-<title> APLICIÓN ADMINISTRATIVA </title>
+<title> APLICIÓN PRODUCTOS </title>
 </head>
 
-<body class="cyan">
+<body class="red">
+
 <div class="section"></div>
 <div class="row">
-<?php
-if (isset($msg)){
-    echo $msg;
-    echo '<script>editar();</script>';
-   }
-?>
 </div>
 <div class="row">
     <div class="col m4"></div>
 
             <div class="col s12 m4  z-depth-5 card-panel">
 
-                <form method="post" id="loginForm" method="post" action="<?php echo base_url(); ?>Administracion/acceder">
+                <form method="post" id="loginForm" method="post" action="<?php echo base_url(); ?>Login/acceder">
 
                     <div class='row '>
                         <div class='col s12'>
                             <div class="input-field col s12 center">
-                                <img src="https://spearcommunication.files.wordpress.com/2016/01/6650fa_f60c4bb75c7448a6a015b4334e27ac38.gif?w=527&h=395" alt=""  height="150" width="150" class="circle responsive-img valign profile-image-login">
-                                <p class="center login-form-text">por favor, ingrese con su cuenta asignada</p>
+                                <img src="<?php echo base_url(); ?>img/login.gif" alt=""  height="200" width="200" class="circle responsive-img valign profile-image-login">
+                               
                             </div>
                         </div>
                     </div>
@@ -56,7 +51,7 @@ if (isset($msg)){
                         <div class='row'>
 
                             <div class='input-field col s12'>
-                            <button type='submit' name='btn_login' class='btn waves-effect waves-light col s12' >Ingrsar</button>
+                            <button type='submit' name='btn_login' class='btn waves-effect red accent-4 col s12' >Ingrsar</button>
                             </div>
                         </div>
 

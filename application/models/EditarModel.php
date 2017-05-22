@@ -52,14 +52,25 @@ class EditarModel extends CI_MODEL {
     }
   }
 
-    public function insertar($nombre1,$nombre2,$apellido1,$apellido2,$identificacion,$celular,$usuario,$contrasenia,$rol){
+    public function uodateUsuario($idusuario,$nombre1,$nombre2,$apellido1,$apellido2,$identificacion,$celular,$usuario,$contrasenia,$rol){
         $mensaje = array();
 
         try {
             $consec= $this->consec_usuario();
             //$consec+=1;
-            $stmt = $this->db->conn_id->prepare("INSERT INTO usuario VALUES (NULL,?,?,?,?,?,?,?,?,?,1)");
-            $stmt->bind_param("issssiiss",$consec,
+            $stmt = $this->db->conn_id->prepare("UPDATE usuario 
+                    SET 
+                    nombre1=?,
+                    nombre2=?,
+                    apellido1=?,
+                    apellido2=?,
+                    identificacion=?,
+                    celular=?,
+                    usuario=?,
+                    contrasenia=?,
+                    flestado=1
+                    WHERE idusuario=?");
+            $stmt->bind_param("ssssiissi",
                 $nombre1,
                 $nombre2,
                 $apellido1,
@@ -67,19 +78,20 @@ class EditarModel extends CI_MODEL {
                 $identificacion,
                 $celular,
                 $usuario,
-                $contrasenia);
+                $contrasenia,
+                $idusuario
+                    );
             $ins = $stmt->execute();
-            $ultid = $stmt->insert_id;
             $stmt->close();
             //insert en tabla de relacion
-                $stmt = $this->db->conn_id->prepare("INSERT INTO usuario_has_roles VALUES (?,?)");
-                $stmt->bind_param("ii", $ultid, $rol);
+                $stmt = $this->db->conn_id->prepare("UPDATE usuario_has_roles  SET  fkroles=? WHERE fkusuario=?");
+                $stmt->bind_param("ii",$rol,$idusuario);
                 $ins = $stmt->execute();
                 $stmt->close();
             if ($ins){
-                $mensaje = array('msg' => 'Se guardaron correctamente', 'tipo' => 'success');
+                $mensaje = array('msg' => 'Se Actualizo correctamente', 'tipo' => 'success');
             }else{
-                $mensaje = array('msg' => 'Error al guarda', 'tipo' => 'error');
+                $mensaje = array('msg' => 'Error al actualizar', 'tipo' => 'error');
             }
             if ($this->db->conn_id->error) {
                 throw new Exception("MySQL error <br>" . $this->db->conn_id->error, $this->db->conn_id->errno);

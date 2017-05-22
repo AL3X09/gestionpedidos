@@ -12,11 +12,9 @@
 <?php
 if (!isset($_SESSION["usuario"])) {
     //echo "error1";
-    header("location: ". base_url()."Administracion/cerrarSesion");
+    header("location: ". base_url()."Login/cerrarSesion");
 }
 $aspirante = unserialize($_SESSION['usuario']);
-echo '<input type="hidden" value="'.$aspirante->idusuario.'" id="idusuario"/>';
-
 
 ob_end_flush();
 ?>

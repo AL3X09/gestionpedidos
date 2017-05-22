@@ -89,7 +89,7 @@ ob_end_flush();
                         <i class="material-icons right">send</i>
                     </button>
             </div>
-            <input type="text" name="hiddenEditar" id="hiddenEditar" value="">
+            <input type="hidden" name="hiddenEditar" id="hiddenEditar" value="">
         </form>
     </div>
 

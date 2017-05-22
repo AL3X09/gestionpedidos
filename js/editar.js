@@ -19,12 +19,12 @@ function listarRoles() {
         async: false,
         success: function (data) {
             $.each(data, function (k, v) {
-                $('select').append($("<option></option>").val(v.idroles).html(v.nombre));
+                $('#rol').append($("<option></option>").val(v.idroles).html(v.nombre));
             });
         }
     });
 
-    $('select').material_select();
+    $('#rol').material_select();
     listarDatos();
 }
 
@@ -38,6 +38,7 @@ function listarDatos() {
         success: function (data) {
             //console.log(data);
             $.each(data, function (k, v) {
+                $('#hiddenEditar').val(v.idusuario);
                $('#nombre1').val(v.nombre1);
                $('#nombre2').val(v.nombre2);
                $('#apellido1').val(v.apellido1);
@@ -48,6 +49,7 @@ function listarDatos() {
                $('#password').val(v.contrasenia);
                console.info($('#rol'));
                $('#rol').val(v.fkroles);
+               $('#rol').material_select();
             });
         }
     });
@@ -58,14 +60,14 @@ function listarDatos() {
 
 function guardar() {
     $.ajax({
-        url: baseUrl + 'Edita/updateUsuario',
+        url: baseUrl + 'Editar/updateUsuario',
         method: 'POST',
         data: $("#formusuario").serialize(),
         success: function (data) {
             console.log(data);
             var $toastContent = $('<span>'+data.msg+'</span>');
-            Materialize.toast($toastContent, 5000);
-            location.href=baseUrl+'Administracion';
+            Materialize.toast($toastContent, 10000,location.href=baseUrl+'Administracion');
+            //location.href=baseUrl+'Administracion';
 
         }
     });

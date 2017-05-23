@@ -25,7 +25,7 @@ class Pedido extends CI_Controller {
         $idusario=$_POST['usarioPidio'];
         $idproducto=$_POST['productoPidio'];
         $valtotal=(isset($_POST['valorTotal']) ? $_POST['valorTotal']:NULL);
-        $valdiferido=(isset($_POST['valorDiferido']) ? $_POST['valorDiferido']:NULL);
+        $valdiferido=(isset($_POST['selectCantCuotas']) ? $_POST['selectCantCuotas']:NULL);
         $unidades=(isset($_POST['unidades']) ? $_POST['unidades']:NULL);
         $FormaPago=(isset($_POST['selectFormaPago']) ? $_POST['selectFormaPago']:NULL);
         //valido si viene con numcuenta cuando el pago es a cuotas

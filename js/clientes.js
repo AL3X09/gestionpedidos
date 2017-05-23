@@ -30,82 +30,17 @@ $(document).ready(function () {
       } // Callback for Modal close
    }
    );
-   //escuchar change1
-   $("#selectFormaPago").change(function () {
-      var eleccion = $(this).val();
-
-
-      if (eleccion == 1) {//si efectivo
-         $("#conefectivo").show("slow");
-         $("#conTarjeta").hide();
-         $("#creditodirecto").hide();
-         $("#diferirA").hide();
-         var valorProducto = $("#valor").val();
-         var cantidad = $("#unidades").val();
-         var GRANTOTAL = valorProducto * cantidad
-         $("#totalPagar").show();
-         $("#calculoValor1").html(GRANTOTAL);
-         $("#calculoValor2").html(GRANTOTAL);
-         $("#valorTotal").val(GRANTOTAL);
-         $("#valorDiferido").val(GRANTOTAL);
-      } else if (eleccion == 2) {//si tajeta
-         $("#conefectivo").hide("slow");
-         $("#contarjeta").show();
-         $("#creditodirecto").hide();
-         $("#diferirA").show();
-      } else if (eleccion == 3) {//si directo
-         $("#conefectivo").hide("slow");
-         $("#contarjeta").hide();
-         $("#creditodirecto").show();
-         $("#diferirA").show();
-      } else {
-         $("#conefectivo").hide("slow");
-         $("#conTarjeta").hide();
-         $("#creditodirecto").hide();
-         $("#diferirA").hide();
-      }
-   });
-
-   //escuchar change2 diferir a 
-   $("#selectCantCuotas").change(function () {
-      var eleccion2 = $(this).val();
-      var valorProducto = $("#valor").val();
-      var cantidad = $("#unidades").val();
-      var GRANTOTAL = valorProducto * cantidad
-      
-       $("#totalPagar").show();
-         $("#calculoValor1").html(GRANTOTAL);
-         $("#calculoValor2").html(GRANTOTAL / eleccion2);
-         $("#valorTotal").val(GRANTOTAL);
-         $("#valorDiferido").val(GRANTOTAL / eleccion2);
-
-      /*lo quito por ahora no sirve
-       * if (eleccion2 == 1) {//si quincenal
-         $("#totalPagar").show();
-         $("#calculoValor1").html(GRANTOTAL);
-         $("#calculoValor2").html(GRANTOTAL / 24);
-         $("#valorTotal").val(GRANTOTAL);
-         $("#valorDiferido").val(GRANTOTAL / 24);
-      } else if (eleccion2 == 2) {//si mensual
-         $("#totalPagar").show();
-         $("#calculoValor1").html(GRANTOTAL);
-         $("#calculoValor2").html(GRANTOTAL / 12);
-         $("#valorTotal").val(GRANTOTAL);
-         $("#valorDiferido").val(GRANTOTAL / 24);
-      } else {
-         $("#totalPagar").hide();
-      }*/
-   });
+   
+   
 
 })
 //para llamar formulario
-function vistaRoles() {
-   location.href = baseUrl + 'Administracion/crearRoles';
+function inicio() {
+   location.href = baseUrl + 'Login';
 }
-
 //para llamar formulario
 function vistacrearUsuario() {
-   location.href = baseUrl + 'Crear';
+   //location.href = baseUrl + 'Crear';
 }
 //llamar formulario edicion
 function editar(iduser) {
@@ -117,39 +52,73 @@ function editar(iduser) {
 function cargarProdcutos() {
    var div = $("#divProductos");
    //var td=null;
-   var permiso;//=[];
-   $.ajax({
-      url: baseUrl + 'Productos/listarProductos',
-      method: 'POST',
-      beforeSend: function () {
-         //alert("consultando");
-      },
-      success: function (data) {
-         div.empty();
-         //console.log(data)
-         $.each(data, function (k, v) {
+   
+       $("#jsGrid").jsGrid({
+                height: "50%",
+                width: "100%",
+                autoload: true,
+                confirmDeleting: false,
+                paging: true,
+                controller: {
+                    loadData: function() {
+                        return db.clients;
+                    }
+                },
+                fields: [
+                    {
+                        headerTemplate: function() {
+                            return $("<button>").attr("type", "button").text("Delete")
+                                    .on("click", function () {
+                                        deleteSelectedItems();
+                                    });
+                        },
+                        itemTemplate: function(_, item) {
+                            return $("<input>").attr("type", "checkbox")
+                                    .prop("checked", $.inArray(item, selectedItems) > -1)
+                                    .on("change", function () {
+                                        $(this).is(":checked") ? selectItem(item) : unselectItem(item);
+                                    });
+                        },
+                        align: "center",
+                        width: 50
+                    },
+                    { name: "Name", type: "text", width: 150 },
+                    { name: "Age", type: "number", width: 50 },
+                    { name: "Address", type: "text", width: 200 }
+                ]
+            });
 
-            var td = '<div class="col s6 m4 l4">' +
-                    '<div class="card">' +
-                    '<div class="card-image">' +
-                    '<img src="' + baseUrl + v.imagen + '">' +
-                    '<span class="card-title">' + v.nombre + '</span>' +
-                    '<a class="btn-floating halfway-fab waves-effect waves-light red" onclick="modalPago(' + v.idproductos + ')"><i class="material-icons">shopping_cart</i></a>' +
-                    '</div>' +
-                    '<div class="card-content">' +
-                    '<p>' + v.descripcion + '</p>' +
-                    '<p>VALOR: $' + v.presio_unidad + ' (cop)</p>' +
-                    '<p>UNIDADES: ' + v.cantidad + '</p>' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>';
-            div.append(td);
-         })
 
-      }
+            var selectedItems = [];
 
-   });
+            var selectItem = function(item) {
+                selectedItems.push(item);
+            };
 
+            var unselectItem = function(item) {
+                selectedItems = $.grep(selectedItems, function(i) {
+                    return i !== item;
+                });
+            };
+
+            var deleteSelectedItems = function() {
+                if(!selectedItems.length || !confirm("Are you sure?"))
+                    return;
+
+                deleteClientsFromDb(selectedItems);
+
+                var $grid = $("#jsGrid");
+                $grid.jsGrid("option", "pageIndex", 1);
+                $grid.jsGrid("loadData");
+
+                selectedItems = [];
+            };
+
+            var deleteClientsFromDb = function(deletingClients) {
+                db.clients = $.map(db.clients, function(client) {
+                    return ($.inArray(client, deletingClients) > -1) ? null : client;
+                });
+            };
 
 }
 

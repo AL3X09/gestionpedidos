@@ -40,3 +40,15 @@ CREATE PROCEDURE `SPinsert_usuario_has_cuenta_pedido`(IN `fkusuario` INT, IN `fk
 ALTER TABLE `usuario_has_cuenta_pedido` CHANGE `fkProducto` `fkPedido` INT(11) NOT NULL;
 ////
 DROP PROCEDURE `SPinsert_usuario_has_cuenta_pedido`; CREATE DEFINER=`root`@`localhost` PROCEDURE `SPinsert_usuario_has_cuenta_pedido`(IN `fkusuario` INT, IN `fkpedido` INT, IN `numcuenta` INT) NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER INSERT INTO usuario_has_cuenta_pedido VALUES(NULL,fkusuario,fkpedido,numcuenta,1)
+////
+ALTER TABLE `pedido` ADD `fechaPedido` DATE NOT NULL AFTER `numeroPedido`;
+/////
+DROP PROCEDURE `SPinsertPedido`; CREATE DEFINER=`root`@`localhost` PROCEDURE `SPinsertPedido`(IN `consecutivo` INT, IN `fkusuario` INT, IN `fkProducto` INT, IN `unidades_vendidas` INT, IN `fkFormaPago` INT, IN `fkTipoPago` INT, IN `totalPagado` INT, IN `diferidoAPagar` INT, IN `numeroPedido` INT) NOT DETERMINISTIC CONTAINS SQL SQL SECURITY DEFINER BEGIN INSERT INTO pedido VALUES(NULL, consecutivo, fkusuario, fkProducto, unidades_vendidas, fkFormaPago, fkTipoPago, totalPagado, diferidoAPagar, numeroPedido, CURDATE(), 1); END 
+////
+/* Función que suma o resta días a una fecha, si el parámetro
+   días es negativo restará los días*/
+function sumarDias(fecha, dias){
+  fecha.setDate(fecha.getDate() + dias);
+  return fecha;
+}
+/////

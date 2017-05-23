@@ -32,7 +32,7 @@
                 </div></li>
             <li><a href="#!"><i class="material-icons">group_work</i>Inicio</a></li>
             <li><a href="#!"><i class="material-icons">shopping_basket</i>Pedidos</a></li>
-            <li><a href="#!"><i class="material-icons">payment</i>Cuotas</a></li>
+            <li><a href="<?php echo base_url(); ?>Clientes" ><i class="material-icons">payment</i>Clientes</a></li>
             <li><a href="#!"><i class="material-icons">store</i>Inventarios</a></li>
             <li><a href="#!"><i class="material-icons">assignment_ind</i>Administracion</a></li>
             <li><div class="divider"></div></li>
@@ -136,6 +136,12 @@
                         <!-- fin si paga con efecttivo -->
                         <!--  campo muestra como puede diferir las cuotas  -->
                         <div id="diferirA" style="display: none">
+                          <div class="input-field col s12 m6">
+                                <select id="selectCantCuotas" name="selectCantCuotas">
+                                    <option value="" disabled selected>Seleccione...</option>
+                                </select>
+                                <label for="first_name">Diferir a </label>
+                            </div>
                             <div class="input-field col s12 m6">
                                 <select id="selectTipoPago" name="selectTipoPago">
                                     <option value="" disabled selected>Seleccione...</option>

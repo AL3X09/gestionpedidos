@@ -41,7 +41,7 @@
       <li><a class="waves-effect" href="<?php echo base_url(); ?>Login/cerrarSesion"><i class="material-icons">power_settings_new</i>Cerrar Sesion</a></li>
     </ul>
 
-    <nav class="nav-extended">
+    <nav class="nav-extended deep-orange">
       <div class="nav-wrapper">
         <a id="logo-container" href="#" class="brand-logo"><img src="<?php echo base_url(); ?>img/logo.gif" width="150" height="90"></a>
       </div>
@@ -56,7 +56,7 @@
     <div class="section no-pad-bot" id="index-banner">
       <div class="container">
 
-        <h4 class="header center orange-text">LISA CLIENTES</h4>
+        <h4 class="header center orange-text">LISTA CLIENTES</h4>
 
       </div>
     </div>
@@ -168,26 +168,40 @@
 
     <div class="section"></div>
 
-    <footer class="page-footer blue darken-4">
-      <div class="container">
-        <div class="row">
-          <div class="col l6 s12">
-            <h5 class="white-text"></h5>
-          </div>
-          <div class="col l6 s12">
-            <h5 class="white-text"></h5>
-            <ul>
-              <li><a class="white-text" href="#!"></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="footer-copyright">
-        <div class="container">
-          Power full by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
-        </div>
-      </div>
-    </footer>
+    <footer class="page-footer deep-orange accent-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">Sistemas Operativos</h5>
+                        <p class="grey-text text-lighten-4">Sistema gestion pedidos clientes</p>
+                    </div>
+                    <div class="col m4 l4 s12">
+                        <h6 class="white-text"></h6>
+                        <div class="chip">
+                            <img src="<?php echo base_url(); ?>img/L.jpg" alt="Contact Person">
+                            LEIDY LEON R. 
+                        </div>
+                    </div>
+                    <div class="col m4 l4 s12">
+                        <div class="chip">
+                            <img src="<?php echo base_url(); ?>img/A.png" alt="Contact Person">
+                            ALEX CIFUENTES 
+                        </div>
+                    </div>
+                    <div class="col m4 l4 s12">
+                        <div class="chip">
+                            <img src="<?php echo base_url(); ?>img/D.jpg" alt="Contact Person">
+                            DAVID ARISTIZABAL 
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-copyright">
+                    <div class="container center-align">
+                        Power full by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+                    </div>
+                </div>
+        </footer>
     <!--  Scripts-->
     <script src="<?php echo base_url(); ?>js/jquery-2.2.1.min.js"></script>
     <script src="<?php echo base_url(); ?>js/materialize.js"></script>

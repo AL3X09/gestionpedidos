@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-05-2017 a las 03:49:45
+-- Tiempo de generación: 24-05-2017 a las 00:34:35
 -- Versión del servidor: 10.1.21-MariaDB
--- Versión de PHP: 7.0.15
+-- Versión de PHP: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -50,6 +50,26 @@ SELECT
           WHERE flestado=1
           AND U.usuario=s_usuario
           AND U.contrasenia=s_contrasenia$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPinsertPedido` (IN `consecutivo` INT, IN `fkusuario` INT, IN `fkProducto` INT, IN `unidades_vendidas` INT, IN `fkFormaPago` INT, IN `fkTipoPago` INT, IN `totalPagado` INT, IN `diferidoAPagar` INT, IN `numeroPedido` INT)  BEGIN
+INSERT INTO pedido
+VALUES(NULL,
+       consecutivo,
+       fkusuario,
+       fkProducto,
+       unidades_vendidas,
+       fkFormaPago,
+       fkTipoPago,
+       totalPagado,
+       diferidoAPagar,
+       numeroPedido,
+       CURDATE(),
+       1);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPinsert_usuario_has_cuenta_pedido` (IN `fkusuario` INT, IN `fkpedido` INT, IN `numcuenta` INT)  NO SQL
+INSERT INTO usuario_has_cuenta_pedido
+VALUES(NULL,fkusuario,fkpedido,numcuenta,1)$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `update_estadoUsuario` (IN `pkusuario` INT)  NO SQL
 UPDATE usuario AS U SET U.flestado=0
@@ -186,6 +206,34 @@ CREATE TABLE `lista_usuarios` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `pedido`
+--
+
+CREATE TABLE `pedido` (
+  `idpedido` int(11) NOT NULL,
+  `consecutivo` int(11) NOT NULL,
+  `fkUsuario` int(11) NOT NULL,
+  `fkProducto` int(11) NOT NULL,
+  `unidades_vendidas` int(11) DEFAULT NULL,
+  `fkFormaPago` int(11) DEFAULT NULL,
+  `fkTipoPago` int(11) DEFAULT NULL,
+  `totalPagado` bigint(20) DEFAULT NULL,
+  `diferidoAPagar` bigint(20) DEFAULT NULL,
+  `numeroPedido` bigint(50) DEFAULT NULL,
+  `fechaPedido` date NOT NULL,
+  `flEstado` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='mantiene los datos del pedido';
+
+--
+-- Volcado de datos para la tabla `pedido`
+--
+
+INSERT INTO `pedido` (`idpedido`, `consecutivo`, `fkUsuario`, `fkProducto`, `unidades_vendidas`, `fkFormaPago`, `fkTipoPago`, `totalPagado`, `diferidoAPagar`, `numeroPedido`, `fechaPedido`, `flEstado`) VALUES
+(1, 1, 1, 1, 1, 2, 1, 120000, 2, 100001, '2017-05-23', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `permisos`
 --
 
@@ -228,9 +276,9 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`idproductos`, `consecutivo`, `nombre`, `presio_unidad`, `comision_venta`, `imagen`, `descripcion`, `cantidad`, `flEstado`) VALUES
-(1, 1, 'no1', 120000, 10, '/img/logo.gif', 'un buen equipo', 2, 1),
-(2, 2, 'mh', 1000000, 5, '/img/logo.gif', 'un buen tv', 1, 1),
-(3, 3, 'fg', 5000000, 20, '/img/logo.gif', 'un buen teatro', 5, 1);
+(1, 1, 'no1', 120000, 10, '/img/logo.gif', 'un buen equipo', 8, 1),
+(2, 2, 'mh', 1000000, 5, '/img/logo.gif', 'un buen tv', 7, 1),
+(3, 3, 'fg', 5000000, 20, '/img/logo.gif', 'un buen teatro', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -321,6 +369,27 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`idusuario`, `consecutivo`, `nombre1`, `nombre2`, `apellido1`, `apellido2`, `identificacion`, `celular`, `usuario`, `contrasenia`, `flestado`) VALUES
 (1, 1, 'ADMIN', '', '', '', 0, 0, 'ADMIN', '11223344', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario_has_cuenta_pedido`
+--
+
+CREATE TABLE `usuario_has_cuenta_pedido` (
+  `idUsuariCuentaPedido` int(11) NOT NULL,
+  `fkUsuario` int(11) NOT NULL,
+  `fkPedido` int(11) NOT NULL,
+  `numerocuenta` bigint(20) DEFAULT NULL,
+  `flEstado` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='tabala mantiene datos de pedido del usario y el pedido';
+
+--
+-- Volcado de datos para la tabla `usuario_has_cuenta_pedido`
+--
+
+INSERT INTO `usuario_has_cuenta_pedido` (`idUsuariCuentaPedido`, `fkUsuario`, `fkPedido`, `numerocuenta`, `flEstado`) VALUES
+(1, 1, 0, 135453454, 1);
 
 -- --------------------------------------------------------
 
@@ -423,6 +492,12 @@ ALTER TABLE `forma_pago`
   ADD PRIMARY KEY (`idformapago`);
 
 --
+-- Indices de la tabla `pedido`
+--
+ALTER TABLE `pedido`
+  ADD PRIMARY KEY (`idpedido`);
+
+--
 -- Indices de la tabla `permisos`
 --
 ALTER TABLE `permisos`
@@ -461,6 +536,12 @@ ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`idusuario`);
 
 --
+-- Indices de la tabla `usuario_has_cuenta_pedido`
+--
+ALTER TABLE `usuario_has_cuenta_pedido`
+  ADD PRIMARY KEY (`idUsuariCuentaPedido`);
+
+--
 -- Indices de la tabla `usuario_has_roles`
 --
 ALTER TABLE `usuario_has_roles`
@@ -494,6 +575,11 @@ ALTER TABLE `cuenta`
 ALTER TABLE `forma_pago`
   MODIFY `idformapago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
+-- AUTO_INCREMENT de la tabla `pedido`
+--
+ALTER TABLE `pedido`
+  MODIFY `idpedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT de la tabla `permisos`
 --
 ALTER TABLE `permisos`
@@ -518,6 +604,11 @@ ALTER TABLE `tipo_pago`
 --
 ALTER TABLE `usuarios`
   MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT de la tabla `usuario_has_cuenta_pedido`
+--
+ALTER TABLE `usuario_has_cuenta_pedido`
+  MODIFY `idUsuariCuentaPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `vendedor`
 --

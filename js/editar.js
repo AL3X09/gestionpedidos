@@ -47,7 +47,7 @@ function listarDatos() {
                 $('#celular').val(v.celular);
                $('#usuario').val(v.usuario);
                $('#password').val(v.contrasenia);
-               console.info($('#rol'));
+               //console.info($('#rol'));
                $('#rol').val(v.fkroles);
                $('#rol').material_select();
             });

@@ -129,14 +129,14 @@
                         <!--  si paga con efecttivo  -->
                         <div id="conefectivo" style="display: none">
                             <div class="input-field col s12 m6">
-                                
-                               <img src="<?php echo base_url(); ?>img/contraEntrega.png" width="150" height="150">
+
+                                <img src="<?php echo base_url(); ?>img/contraEntrega.png" width="150" height="150">
                             </div>
                         </div>
                         <!-- fin si paga con efecttivo -->
                         <!--  campo muestra como puede diferir las cuotas  -->
                         <div id="diferirA" style="display: none">
-                          <div class="input-field col s12 m6">
+                            <div class="input-field col s12 m6">
                                 <select id="selectCantCuotas" name="selectCantCuotas">
                                     <option value="" disabled selected>Seleccione...</option>
                                 </select>
@@ -153,9 +153,9 @@
                         <div id="totalPagar" style="display: none">
                             <div class="input-field col s12 m6">
                                 <label for="first_name" class="black-text">El Monto a pagar Total es $<span id="calculoValor1" ></span> (cop)</label>
-                             </div>
-                          <br/>
-                          <br/>
+                            </div>
+                            <br/>
+                            <br/>
                             <div class="input-field col s12 m6">
                                 <label for="first_name" class="black-text">El Monto a pagar segun diferido es $<span id="calculoValor2" ></span> (cop)</label>
                             </div>
@@ -175,22 +175,33 @@
 
         <div class="section"></div>
 
-        <footer class="page-footer blue darken-4">
+        <footer class="page-footer red accent-1">
             <div class="container">
                 <div class="row">
-                    <div class="col l6 s12">
-                        <h5 class="white-text"></h5>
+                    
+                    <div class="col m4 l4 s12">
+                        <h6 class="white-text"></h6>
+                        <div class="chip">
+                            <img src="<?php echo base_url(); ?>img/L.png" alt="Contact Person">
+                            LEIDY LEON R. 
+                        </div>
                     </div>
-                    <div class="col l6 s12">
-                        <h5 class="white-text"></h5>
-                        <ul>
-                            <li><a class="white-text" href="#!"></a></li>
-                        </ul>
+                    <div class="col m4 l4 s12">
+                        <div class="chip">
+                            <img src="<?php echo base_url(); ?>img/A.png" alt="Contact Person">
+                            ALEX CIFUENTES 
+                        </div>
+                    </div>
+                    <div class="col m4 l4 s12">
+                        <div class="chip">
+                            <img src="<?php echo base_url(); ?>img/A.png" alt="Contact Person">
+                            ANDRES ARISTIZABAL 
+                        </div>
                     </div>
                 </div>
-            </div>
+            
             <div class="footer-copyright">
-                <div class="container">
+                <div class="container center-align">
                     Power full by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
                 </div>
             </div>

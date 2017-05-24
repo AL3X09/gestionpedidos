@@ -12,7 +12,7 @@ $(document).ready(function () {
    //
    $('.modal').modal();
 
-   cargarProdcutos();
+   cargarClientes();
 
    $('.modal').modal({
       dismissible: true, // Modal can be dismissed by clicking outside of the modal
@@ -30,8 +30,8 @@ $(document).ready(function () {
       } // Callback for Modal close
    }
    );
-   
-   
+
+
 
 })
 //para llamar formulario
@@ -49,76 +49,60 @@ function editar(iduser) {
    location.href = baseUrl + 'Editar?iduser=' + iduser;
 }
 
-function cargarProdcutos() {
-   var div = $("#divProductos");
-   //var td=null;
-   
-       $("#jsGrid").jsGrid({
-                height: "50%",
-                width: "100%",
-                autoload: true,
-                confirmDeleting: false,
-                paging: true,
-                controller: {
-                    loadData: function() {
-                        return db.clients;
-                    }
+function cargarClientes() {
+  
+   $("#jsGrid").jsGrid({
+  height: "auto",
+  width: "100%",
+  sorting: true,
+  paging: true,
+  autoload: true,
+  inserting: true,
+  editing: true,
+  pageSize: 10,
+  deleteConfirm: "Do you really want to delete client?",
+  //filtering: true,
+  controller: {
+    loadData: function (filter) {
+     var data = $.Deferred();
+     $.ajax({
+       type: "GET",
+       contentType: "application/json; charset=utf-8",
+       url: baseUrl + "Pago/listarFormaPago",
+       dataType: "json"
+       }).done(function(response){
+         data.resolve(response);
+     });
+      return data.promise();
+    },
+                insertItem: function(item) {
+                    return $.ajax({
+                        type: "POST",
+                        url: "/clients/",
+                        data: item
+                    });
                 },
-                fields: [
-                    {
-                        headerTemplate: function() {
-                            return $("<button>").attr("type", "button").text("Delete")
-                                    .on("click", function () {
-                                        deleteSelectedItems();
-                                    });
-                        },
-                        itemTemplate: function(_, item) {
-                            return $("<input>").attr("type", "checkbox")
-                                    .prop("checked", $.inArray(item, selectedItems) > -1)
-                                    .on("change", function () {
-                                        $(this).is(":checked") ? selectItem(item) : unselectItem(item);
-                                    });
-                        },
-                        align: "center",
-                        width: 50
-                    },
-                    { name: "Name", type: "text", width: 150 },
-                    { name: "Age", type: "number", width: 50 },
-                    { name: "Address", type: "text", width: 200 }
-                ]
-            });
-
-
-            var selectedItems = [];
-
-            var selectItem = function(item) {
-                selectedItems.push(item);
-            };
-
-            var unselectItem = function(item) {
-                selectedItems = $.grep(selectedItems, function(i) {
-                    return i !== item;
-                });
-            };
-
-            var deleteSelectedItems = function() {
-                if(!selectedItems.length || !confirm("Are you sure?"))
-                    return;
-
-                deleteClientsFromDb(selectedItems);
-
-                var $grid = $("#jsGrid");
-                $grid.jsGrid("option", "pageIndex", 1);
-                $grid.jsGrid("loadData");
-
-                selectedItems = [];
-            };
-
-            var deleteClientsFromDb = function(deletingClients) {
-                db.clients = $.map(db.clients, function(client) {
-                    return ($.inArray(client, deletingClients) > -1) ? null : client;
-                });
-            };
+                updateItem: function(item) {
+                    return $.ajax({
+                        type: "PUT",
+                        url: "/clients/",
+                        data: item
+                    });
+                },
+                deleteItem: function(item) {
+                    return $.ajax({
+                        type: "DELETE",
+                        url: "/clients/",
+                        data: item
+                    });
+                }
+  },
+  fields: [
+    { name: "nombre", type: "text" },
+    { name: "Description", type: "text", width: 150 },
+    { type: "control" }
+  ]
+});
 
 }
 
@@ -142,7 +126,7 @@ function modalPago(id) {
             $('#unidades').append($("<option></option>").val(i).html(i));
          }
          for (i = 1; i <= 36; i++) {
-            $('#selectCantCuotas').append($("<option></option>").val(i).html(i+' Cuotas'));
+            $('#selectCantCuotas').append($("<option></option>").val(i).html(i + ' Cuotas'));
          }
          $('#selectCantCuotas').material_select();
          $('#unidades').material_select();
@@ -269,7 +253,9 @@ function solicitarPedido() {
       console.log(data)
       var $toastContent = $('<span>' + data.msg + '</span>');
       Materialize.toast($toastContent, 5000);
-          setInterval(function(){ location.href = baseUrl + 'Login'; },3000);
+      setInterval(function () {
+         location.href = baseUrl + 'Login';
+      }, 3000);
 
       //$("#usuarios").empty();
       //cargarTabla();

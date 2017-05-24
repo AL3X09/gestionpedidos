@@ -61,14 +61,14 @@
       </div>
     </div>
 
-    <div id="jsGrid"></div>
+
 
     <div class="container" id="administracion">
       <div class="row" id="divProductos">
 
         <div class="col s12 m12 l12">
           <!--cargo la grilla-->
-
+          <div id="jsGrid"></div>
         </div>
 
       </div>

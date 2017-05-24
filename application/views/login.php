@@ -11,10 +11,10 @@
   <body class="red">
     <?php
     if (isset($msg)) {
-      
+
       echo '<div class = "section">
       <div class = "row">
-      <h5 class = "center-align card-panel hoverable">'.$tipo .': '.$msg.'</h5>
+      <h5 class = "center-align card-panel hoverable">' . $tipo . ': ' . $msg . '</h5>
       </div>
       </div>';
     }

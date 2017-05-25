@@ -147,9 +147,9 @@
     <script src="<?php echo base_url(); ?>librerias/jsgrid-1.5.3/fields/jsgrid.field.number.js"></script>
     <script src="<?php echo base_url(); ?>librerias/jsgrid-1.5.3/fields/jsgrid.field.control.js"></script>
     <!-- javascript para las graficas -->
-    <script type="text/javascript" src="../../js/Chart.min.js"></script>
-    <script type="text/javascript" src="../../js/Chart.bundle.min.js"></script>
-    <script type="text/javascript" src="../../js/utils.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>librerias/Chart.js/Chart.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>librerias/Chart.js/Chart.bundle.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>js/utils.js"></script>
 
   </body>
 </html>

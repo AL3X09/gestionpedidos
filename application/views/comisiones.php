@@ -7,7 +7,7 @@
     <link href="<?php echo base_url(); ?>librerias/jsgrid-1.5.3/jsgrid.min.css" type="text/css" rel="stylesheet"/>
     <link href="<?php echo base_url(); ?>librerias/jsgrid-1.5.3/jsgrid-theme.min.css" type="text/css" rel="stylesheet"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-    <title> CLIENTES </title>
+    <title> COMISIONES </title>
   </head>
   <!-- BODY  -->
   <body class="" >
@@ -205,7 +205,7 @@
     <!--  Scripts-->
     <script src="<?php echo base_url(); ?>js/jquery-2.2.1.min.js"></script>
     <script src="<?php echo base_url(); ?>js/materialize.js"></script>
-    <script src="<?php echo base_url(); ?>js/clientes.js"></script>
+    <script src="<?php echo base_url(); ?>js/comisiones.js"></script>
     <script src="<?php echo base_url(); ?>librerias/jsgrid-1.5.3/db.js"></script>
     <script src="<?php echo base_url(); ?>librerias/jsgrid-1.5.3/jsgrid.core.js"></script>
     <script src="<?php echo base_url(); ?>librerias/jsgrid-1.5.3/jsgrid.load-indicator.js"></script>

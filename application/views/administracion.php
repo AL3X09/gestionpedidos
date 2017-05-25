@@ -45,7 +45,7 @@
         <a id="logo-container" href="#" class="brand-logo"><img src="<?php echo base_url(); ?>img/logo.gif" width="150" height="90"></a>
       </div>
       <div class="nav-content">
-        <span class="nav-title">Prodcutos</span>
+        <span class="nav-title">Administracion</span>
         <a href="#" data-activates="slide-out" class="btn-floating btn-large halfway-fab waves-effect waves-light teal pulse" id="menubutton">
           <i class="material-icons">menu</i>
         </a>

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Administracion extends CI_Controller {
+class Inicio extends CI_Controller {
 
 
 	//public function costruct
@@ -14,7 +14,7 @@ class Administracion extends CI_Controller {
 	public function index()
 	{
             session_start();
-		$this->load->view('administracion');
+		$this->load->view('');
 	}
 	//llamo vista de formulirio para perfiles
     public function crearRoles()

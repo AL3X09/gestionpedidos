@@ -60,7 +60,7 @@
           <div class='row'>
 
             <div class='input-field col s12'>
-              <button type='submit' name='btn_login' class='btn waves-effect red accent-4 col s12' >Ingrsar</button>
+              <button type='submit' name='btn_login' class='btn waves-effect red accent-4 col s12' >Ingresar</button>
             </div>
           </div>
 

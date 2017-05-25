@@ -63,7 +63,7 @@ function cargarCuotas() {
       pageSize: 10,
       deleteConfirm: "Esta Seguro de eliminar el registro?",
       rowClick: function (args) {
-         window.open(baseUrl+"CuotasCredito/distriCuotasCredito?idcliente="+args.item['idusuario']);
+         location.href = baseUrl+"CuotasCredito/listProductoClientes?idcliente="+args.item['idusuario'];
             //console.log(args.item['idusuario']);
       },
       controller: {
@@ -103,8 +103,7 @@ function cargarCuotas() {
          {name: "nombre2", title: "Primer Nombre", type: "text"},
          {name: "apellido1", title: "Primer Apellido", type: "text"},
          {name: "apellido2", title: "Segundo Apellido", type: "text"},
-         {name: "identificacion", title: "Identificación", type: "text"},
-         {name: "identificacion", title: "Identificación", type: "text"},
+         {name: "identificacion", title: "Identificación", type: "text"},         
          {type: "control"}
       ]
    });

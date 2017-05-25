@@ -13,7 +13,6 @@
   <body class="" >
 
     <?php
-    
     if (!isset($_SESSION["usuario"])) {
       header("location: " . base_url() . "Login/cerrarSesion");
     }
@@ -22,6 +21,7 @@
 
     echo '<input type="hidden" value="' . $USUARIO['idusuario'] . '" id="idusuario"/>';
     echo '<input type="hidden" value="' . $_GET['idcliente'] . '" id="idcliente"/>';
+    echo '<input type="hidden" value="' . $_GET['idpedido'] . '" id="idPedido"/>';
 
     ob_end_flush();
     ?>
@@ -74,7 +74,9 @@
     <div class="section no-pad-bot" id="index-banner">
       <div class="container">
 
-        <h4 class="header center orange-text">PRODUCTOS ADQUIRIDOS POR EL CLIENTE <span id="nombrecliente"></span></h4>
+        <h4 class="header center orange-text">CUOTAS CREDITO PARA EL CLIENTE <span id=""><?php
+      echo $_GET['nombre'] . ' ' . $_GET['apellido'];
+      ?></span></h4>
 
       </div>
     </div>
@@ -84,15 +86,14 @@
 
         <div class="col s12 m12 l12">
           <!--cargo la grilla-->
-           <div id="jsGrid"></div>
-           
+
         </div>
 
       </div>
     </div>
 
     <div class="section"></div>
-      
+
 
     <div class="section"></div>
 
@@ -134,6 +135,12 @@
     <script src="<?php echo base_url(); ?>js/jquery-2.2.1.min.js"></script>
     <script src="<?php echo base_url(); ?>js/materialize.js"></script>
     <script src="<?php echo base_url(); ?>js/clientes.js"></script>
+    <script>
+      $(document).ready(function () {
+        listarCuotas();
+         
+      }
+    </script>
     <script src="<?php echo base_url(); ?>librerias/jsgrid-1.5.3/db.js"></script>
     <script src="<?php echo base_url(); ?>librerias/jsgrid-1.5.3/jsgrid.core.js"></script>
     <script src="<?php echo base_url(); ?>librerias/jsgrid-1.5.3/jsgrid.load-indicator.js"></script>

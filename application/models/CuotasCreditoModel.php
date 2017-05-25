@@ -25,28 +25,65 @@ class CuotasCreditoModel extends CI_MODEL {
     }
   }
 
-  function listarCuotasClientes() {
+  function listarProductosClientes($idCliente) {
+    
     $cliente = array();
     try {
       $stmt = $this->db->conn_id->prepare("SELECT 
               P.idpedido,
-              P.idpedido,
-              A.fkTipoDocumentoIdntdd,
-              A.Identificacion_Aspirante, A.Primer_Nombre, A.Segundo_Nombre,
-              A.Primer_Apellido, A.Segundo_Apellido, A.FechaNac_Aspirante,A.fkSexo,
-              A.fkEdoCivil, A.flTieneHijos, A.fkNivelAcademico,A.Email_Aspirante, 
-              A.Telefono_Celular, A.Telefono_Residencia, A.Telefono_Otro, A.pkDistrito,
-               A.fkProcesoIncorporacion FROM tbaspirantes A 
-              INNER JOIN tbdistritos D ON A.pkDistrito=D.pkDistrito WHERE A.pkAspirante = ?");
-      $stmt->bind_param('i', $pkAspirante);
+              P.unidades_vendidas,              
+              FP.nombre, 
+              TP.nombre, 
+              P.totalPagado,
+              P.diferidoAPagar,
+              P.numeroPedido,
+              P.fechaPedido,
+              PR.nombre AS nombreProducto,
+              U.nombre1 AS nombre1,
+              U.nombre2 AS nombre2,
+              U.apellido1 AS apellido1,
+              U.apellido2 AS apellido2
+              FROM pedido P 
+              INNER JOIN productos PR ON PR.idproductos=P.fkProducto
+              INNER JOIN usuarios U ON U.idusuario=P.fkUsuario
+              LEFT JOIN tipo_pago TP ON TP.idtipopago=fkTipoPago
+              LEFT JOIN forma_pago FP ON FP.idformapago=fkFormaPago
+              WHERE P.fkUsuario = ?
+              AND U.flestado=1
+              ");
+      $stmt->bind_param('i', $idCliente);
       $stmt->execute();
-      $stmt->bind_result($fkNacionalidad, $fkTipoDocumentoIdntdd, $Identificacion_Aspirante, );
-      if ($stmt->fetch()) {
-        $cliente = array(
-          'fkNacionalidad' => $fkNacionalidad,
-          'fkTipoDocumentoIdntdd' => $fkTipoDocumentoIdntdd,
-          'Identificacion_Aspirante' => $Identificacion_Aspirante,
-          'Primer_Nombre' => $Primer_Nombre
+      $stmt->bind_result(
+              $idpedido,
+              $unidades_vendidas,
+              $nombreForma,
+              $nombreTipo, 
+              $totalPagado, 
+              $diferidoAPagar,
+              $numeroPedido,
+              $fechaPedido,
+              $nombreProducto,
+              $nombre1, 
+              $nombre2,
+              $apellido1,
+              $apellido2
+              );
+       while ($stmt->fetch()) {
+         
+        $cliente[] = array(
+          'idpedido' => $idpedido,
+          'unidades_vendidas' => $unidades_vendidas,
+          'nombreForma' => $nombreForma,
+          'nombreTipo' => $nombreTipo,
+          'totalPagado' => $totalPagado,
+          'diferidoAPagar' => $diferidoAPagar,
+          'numeroPedido' => $numeroPedido,
+          'fechaPedido' => $fechaPedido,
+          'nombreProducto' => $nombreProducto,
+          'nombre1' => $nombre1,
+          'nombre2' => $nombre2,
+          'apellido1' => $apellido1,
+          'apellido2' => $apellido2,
         );
       }
       $stmt->close();

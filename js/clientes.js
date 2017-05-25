@@ -12,48 +12,110 @@ $(document).ready(function () {
    //
    $('.modal').modal();
 
-   cargarCuotasClientes();
+   cargarProductosClientes();
 
 })
 
-function cargarCuotasClientes() {
-  
-   var div = $("#divProductos");
-   var idcliente = $("#idcliente");
+function cargarProductosClientes() {
+   
+   var idcliente = $("#idcliente").val();
+   
    //var td=null;
-   var permiso;//=[];
-   $.ajax({
-      url: baseUrl + 'CuotasCredito/listarCuotasXCliente',
-      method: 'POST',
-      data: {idCliente:idcluiente},
-      beforeSend: function () {
-         //alert("consultando");
+   $("#jsGrid").jsGrid({
+      height: "auto",
+      width: "100%",
+      sorting: true,
+      paging: true,
+      autoload: true,
+      inserting: false,
+      editing: true,
+      pageSize: 10,
+      deleteConfirm: "Esta Seguro de eliminar el registro?",
+      rowClick: function (args) {
+         window.open(baseUrl + "CuotasCredito/distriCuotasCredito?idcliente=" + idcliente+"&nombre="+args.item['nombre1']+"&apellido="+args.item['apellido1']+"&idpedido="+args.item['idpedido']);
+         //console.log(args.item['idusuario']);url: baseUrl + 'CuotasCredito/listarProductosClientes?idCliente='+idcliente,
       },
-      success: function (data) {
-         div.empty();
-         //console.log(data)
-         $.each(data, function (k, v) {
+      controller: {
+         loadData: function (filter) {
+            var data = $.Deferred();
+            $.ajax({
+               type: "GET",
+               contentType: "application/json; charset=utf-8",
+               url: baseUrl + 'CuotasCredito/listarProductosClientes?idCliente='+idcliente,
+               dataType: "json"
+            }).done(function (response) {
+               data.resolve(response);
+            });
+            return data.promise();
+         },
+         insertItem: function (item) {
+            return $.ajax({
+               type: "POST",
+               url: "",
+               data: item
+            });
+         },
+         updateItem: function (item) {
 
-            var td = '<div class="col s6 m4 l4">' +
-                    '<div class="card">' +
-                    '<div class="card-image">' +
-                    '<img src="' + baseUrl + v.imagen + '">' +
-                    '<span class="card-title">' + v.nombre + '</span>' +
-                    '<a class="btn-floating halfway-fab waves-effect waves-light red" onclick="modalPago(' + v.idproductos + ')"><i class="material-icons">shopping_cart</i></a>' +
-                    '</div>' +
-                    '<div class="card-content">' +
-                    '<p>' + v.descripcion + '</p>' +
-                    '<p>VALOR: $' + v.presio_unidad + ' (cop)</p>' +
-                    '<p>UNIDADES: ' + v.cantidad + '</p>' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>';
-            div.append(td);
-         })
+         },
+         deleteItem: function (item) {
+            return $.ajax({
+               type: "DELETE",
+               url: "",
+               data: item
+            });
+         }
+      },
+      fields: [
+         {name: "idpedido", title: "Codigo", type: "text"},
+         {name: "nombre1", title: "Primer Nombre", type: "text"},
+         {name: "nombre2", title: "Primer Nombre", type: "text"},
+         {name: "apellido1", title: "Primer Apellido", type: "text"},
+         {name: "apellido2", title: "Segundo Apellido", type: "text"},         
+         {name: "nombreProducto", title: "Producto", type: "text"},
+         {name: "numeroPedido", title: "COD Compra", type: "text"},
+         {name: "nombreForma", title: "Forma de Pago", type: "text"},
+         {name: "fechaPedido", title: "Fecha Compra", type: "text"},
+         //{type: "control"}
+      ]
+   });
 
-      }
+}
+
+function cargarProductosClientes() {
+   
+   var idpedido = $("#idPedido").val();
+   
+   $.ajax({
+      url: baseUrl + "CuotasCredito/listarCuotasXCliente",
+      method: "POST",
+      data: {idProducto: id},
+   }).done(function (data) {
+
+      $.each(data, function (k, v) {
+         $("#imagen").empty();
+         $("#imagen").attr("src", baseUrl + v.imagen);
+         $("#nombre").val(v.nombre);
+         $("#valor").val(v.presio_unidad);
+         $('#unidades').empty();
+         $('#unidades').append('<option value="" disabled selected>Seleccione...</option>');
+         for (i = 1; i <= v.cantidad; i++) {
+            $('#unidades').append($("<option></option>").val(i).html(i));
+         }
+         for (i = 1; i <= 36; i++) {
+            $('#selectCantCuotas').append($("<option></option>").val(i).html(i + ' Cuotas'));
+         }
+         $('#selectCantCuotas').material_select();
+         $('#unidades').material_select();
+
+
+
+      })
+      $("#usarioPidio").val(idUsuario);
+      $("#productoPidio").val(id);
 
    });
+
 }
 
 

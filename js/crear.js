@@ -6,6 +6,10 @@ var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.spli
 var img=baseUrl+'img/x.png';
 
 $(document).ready(function() {
+  // Initialize collapse button
+   //$("#menubutton").sideNav();
+   $(".pulse").sideNav();
+   
     listarRoles();
 })
 

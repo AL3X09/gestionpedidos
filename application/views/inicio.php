@@ -54,7 +54,7 @@
     <div class="section no-pad-bot" id="index-banner">
       <div class="container">
 
-        <h4 class="header center orange-text">PIDE TU PRODCUTO</h4>
+        <h4 class="header center orange-text">PIDE TU PRODUCTO</h4>
 
       </div>
     </div>

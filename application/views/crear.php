@@ -11,18 +11,44 @@
   <body class="" >
     <?php
     if (!isset($_SESSION["usuario"])) {
-      //echo "error1";
       header("location: " . base_url() . "Login/cerrarSesion");
     }
-    $aspirante = unserialize($_SESSION['usuario']);
+
+    $USUARIO = unserialize($_SESSION['usuario']);
+
+    echo '<input type="hidden" value="' . $USUARIO['idusuario'] . '" id="idusuario"/>';
 
     ob_end_flush();
     ?>
-    <nav class="deep-orange" role="navigation">
-      <div class="nav-wrapper container">
-        <a id="logo-container" href="#" class="brand-logo" onclick="volver()"><img src="<?php echo base_url(); ?>img/logo.gif" width="150" height="90"></a>
+    <ul id="slide-out" class="side-nav">
+      <li><div class="userView">
+          <div class="background">
+            <img src="<?php echo base_url(); ?>img/bk.jpg">
+          </div>
+          <a href="#!user"><img class="circle" src="<?php echo base_url(); ?>img/p1.png"></a>
+          <a href="#!name"><span class="white-text name"><?php echo $USUARIO['usuario'] ?></span></a>
+        </div></li>
+      <li><a href="#!"><i class="material-icons">group_work</i>Inicio</a></li>
+      <li><a href="#!"><i class="material-icons">shopping_basket</i>Pedidos</a></li>
+      <li><a href="<?php echo base_url(); ?>Clientes" ><i class="material-icons">payment</i>Clientes</a></li>
+      <li><a href="#!"><i class="material-icons">store</i>Inventarios</a></li>
+      <li><a href="#!"><i class="material-icons">assignment_ind</i>Administracion</a></li>
+      <li><div class="divider"></div></li>
+      <li><a class="waves-effect" href="<?php echo base_url(); ?>Login/cerrarSesion"><i class="material-icons">power_settings_new</i>Cerrar Sesion</a></li>
+    </ul>
+
+    <nav class="nav-extended deep-orange">
+      <div class="nav-wrapper">
+        <a id="logo-container" href="#" class="brand-logo"><img src="<?php echo base_url(); ?>img/logo.gif" width="150" height="90"></a>
+      </div>
+      <div class="nav-content">
+        <span class="nav-title">Prodcutos</span>
+        <a href="#" data-activates="slide-out" class="btn-floating btn-large halfway-fab waves-effect waves-light teal pulse" id="menubutton">
+          <i class="material-icons">menu</i>
+        </a>
       </div>
     </nav>
+
     <div class="section no-pad-bot" id="index-banner">
       <div class="container">
         <br><br>
@@ -128,7 +154,7 @@
         </div>
     </footer>
     <!--  Scripts-->
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="<?php echo base_url(); ?>js/jquery-3.1.1.min.js"></script>
     <script src="<?php echo base_url(); ?>js/materialize.js"></script>
     <script src="<?php echo base_url(); ?>js/crear.js"></script>
   </body>

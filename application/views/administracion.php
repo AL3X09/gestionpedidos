@@ -23,8 +23,6 @@
     ob_end_flush();
     ?>
 
-
-
     <ul id="slide-out" class="side-nav">
       <li><div class="userView">
           <div class="background">
@@ -33,11 +31,13 @@
           <a href="#!user"><img class="circle" src="<?php echo base_url(); ?>img/p1.png"></a>
           <a href="#!name"><span class="white-text name"><?php echo $USUARIO['usuario'] ?></span></a>
         </div></li>
-      <li><a href="#!" onclick="vistaRoles()"><i class="material-icons">vpn_key</i>Crear Roles</a></li>
-      <li><a href="#!">Second Link</a></li>
+      <li><a href="#!"><i class="material-icons">group_work</i>Inicio</a></li>
+      <li><a href="#!"><i class="material-icons">shopping_basket</i>Pedidos</a></li>
+      <li><a href="<?php echo base_url(); ?>Clientes" ><i class="material-icons">payment</i>Clientes</a></li>
+      <li><a href="#!"><i class="material-icons">store</i>Inventarios</a></li>
+      <li><a href="#!"><i class="material-icons">assignment_ind</i>Administracion</a></li>
       <li><div class="divider"></div></li>
-      <li><a class="subheader">Subheader</a></li>
-      <li><a class="waves-effect" href="<?php echo base_url(); ?>Administracion/cerrarSesion">Cerrar Sesion</a></li>
+      <li><a class="waves-effect" href="<?php echo base_url(); ?>Login/cerrarSesion"><i class="material-icons">power_settings_new</i>Cerrar Sesion</a></li>
     </ul>
 
     <nav class="nav-extended deep-orange">
@@ -52,8 +52,6 @@
       </div>
     </nav>
 
-
-
     <div class="section no-pad-bot" id="index-banner">
       <div class="container">
 
@@ -62,21 +60,6 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col s6 m4 l4">
-        <div class="card">
-          <div class="card-image">
-            <img src="images/sample-1.jpg">
-            <span class="card-title">Card Title</span>
-            <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">shopping_cart</i></a>
-          </div>
-          <div class="card-content">
-            <p>Nombre</p>
-            <p>presio</p>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <div class="container" id="administracion">
       <div class="row">

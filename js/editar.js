@@ -5,6 +5,9 @@ var getUrl = window.location;
 var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1]+ "/"; // lineas servidor local
 
 $(document).ready(function() {
+  // Initialize collapse button
+   //$("#menubutton").sideNav();
+   $(".pulse").sideNav();
     listarRoles();
 })
 

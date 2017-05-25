@@ -206,7 +206,7 @@
     <script src="<?php echo base_url(); ?>js/jquery-2.2.1.min.js"></script>
     <script src="<?php echo base_url(); ?>js/materialize.js"></script>
     <script src="<?php echo base_url(); ?>js/cuotascredito.js"></script>
-    <script src="<?php echo base_url(); ?>librerias/jsgrid-1.5.3/db.js"></script>
+    <script src="<?php echo base_url(); ?>librerias/jsgrid-1.5.3/i18n/es.js"></script>
     <script src="<?php echo base_url(); ?>librerias/jsgrid-1.5.3/jsgrid.core.js"></script>
     <script src="<?php echo base_url(); ?>librerias/jsgrid-1.5.3/jsgrid.load-indicator.js"></script>
     <script src="<?php echo base_url(); ?>librerias/jsgrid-1.5.3/jsgrid.load-strategies.js"></script>

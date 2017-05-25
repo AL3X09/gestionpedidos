@@ -98,10 +98,10 @@ function cargarVendedores() {
                 }
   },
   fields: [
-    { name: "idVendedor", title:"Coddigo", type: "text" },
-    { name: "nombreVendedor", title:"Nombre", type: "text" },
-    { name: "Sueldo", title:"Sueldo", type: "text" },
-    { name: "comision_venta", title:"% Comision", type: "text" },
+    { name: "idvendedor", title:"Codigo", type: "text" },
+    { name: "nobres", title:"Nombre", type: "text" },
+    { name: "aepellidos", title:"Apellidos", type: "text" },
+    { name: "correo", title:"Correo", type: "text" },
     { type: "control" }
   ]
 });

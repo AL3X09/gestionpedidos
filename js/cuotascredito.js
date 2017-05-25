@@ -6,6 +6,7 @@ var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split
 
 $(document).ready(function () {
 
+   //$("#jsGrid").jsGrid.locale("es");
    // Initialize collapse button
    //$("#menubutton").sideNav();
    $(".pulse").sideNav();
@@ -50,61 +51,64 @@ function editar(iduser) {
 }
 
 function cargarCuotas() {
-  
+
    $("#jsGrid").jsGrid({
-  height: "auto",
-  width: "100%",
-  sorting: true,
-  paging: true,
-  autoload: true,
-  inserting: true,
-  editing: true,
-  pageSize: 10,
-  deleteConfirm: "Esta Seguro de eliminar el registro?",
-  //filtering: true,
-  controller: {
-    loadData: function (filter) {
-     var data = $.Deferred();
-     $.ajax({
-       type: "GET",
-       contentType: "application/json; charset=utf-8",
-       url: baseUrl + "CuotasCredito/listarCuotas",
-       dataType: "json"
-       }).done(function(response){
-         data.resolve(response);
-     });
-      return data.promise();
-    },
-                insertItem: function(item) {
-                    return $.ajax({
-                        type: "POST",
-                        url: "/clients/",
-                        data: item
-                    });
-                },
-                updateItem: function(item) {
-                    return $.ajax({
-                        type: "PUT",
-                        url: "/clients/",
-                        data: item
-                    });
-                },
-                deleteItem: function(item) {
-                    return $.ajax({
-                        type: "DELETE",
-                        url: "/clients/",
-                        data: item
-                    });
-                }
-  },
-  fields: [
-    { name: "idVendedor", title:"Coddigo", type: "text" },
-    { name: "nombreVendedor", title:"Nombre", type: "text" },
-    { name: "Sueldo", title:"Sueldo", type: "text" },
-    { name: "comision_venta", title:"% Comision", type: "text" },
-    { type: "control" }
-  ]
-});
+      height: "auto",
+      width: "100%",
+      sorting: true,
+      paging: true,
+      autoload: true,
+      inserting: false,
+      editing: true,
+      pageSize: 10,
+      deleteConfirm: "Esta Seguro de eliminar el registro?",
+      rowClick: function (args) {
+         window.open(baseUrl+"CuotasCredito/distriCuotasCredito?idcliente="+args.item['idusuario']);
+            //console.log(args.item['idusuario']);
+      },
+      controller: {
+         loadData: function (filter) {
+            var data = $.Deferred();
+            $.ajax({
+               type: "GET",
+               contentType: "application/json; charset=utf-8",
+               url: baseUrl + "CuotasCredito/listarClientes",
+               dataType: "json"
+            }).done(function (response) {
+               data.resolve(response);
+            });
+            return data.promise();
+         },
+         insertItem: function (item) {
+            return $.ajax({
+               type: "POST",
+               url: "/clients/",
+               data: item
+            });
+         },
+         updateItem: function (item) {
+            
+         },
+         deleteItem: function (item) {
+            return $.ajax({
+               type: "DELETE",
+               url: "/clients/",
+               data: item
+            });
+         }
+      },
+      fields: [
+         {name: "idusuario", title: "Codigo", type: "text"},
+         {name: "nombre1", title: "Primer Nombre", type: "text"},
+         {name: "nombre2", title: "Primer Nombre", type: "text"},
+         {name: "apellido1", title: "Primer Apellido", type: "text"},
+         {name: "apellido2", title: "Segundo Apellido", type: "text"},
+         {name: "identificacion", title: "Identificación", type: "text"},
+         {name: "identificacion", title: "Identificación", type: "text"},
+         {type: "control"}
+      ]
+   });
+
 
 }
 

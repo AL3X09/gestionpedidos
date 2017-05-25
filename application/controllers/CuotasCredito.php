@@ -17,22 +17,26 @@ class CuotasCredito extends CI_Controller {
             $this->load->view('cuotasCredito');
 	}
 	//llamo vista de formulirio para perfiles
-   
-    //
-    public function listarCuotas()
+        public function distriCuotasCredito()
+	{
+            session_start();
+            $this->load->view('clientes');
+	}        
+        //
+    public function listarClientes()
     {
-        $lista = $this->VendedoresModel->listar();
+        $lista = $this->CuotasCreditoModel->listarClientes();
         header('Content-type: application/json; charset=utf-8');
         echo json_encode($lista);
     }
-    
-    public function listarCuotasID()
+   
+    //
+    public function listarCuotasXCliente()
     {
-        $idproducto = $_POST['idProducto'];
-        $datosP = $this->ProductosModel->listarProductobyID($idproducto);
+        $idCliente=$_POST['idcliente'];
+        $lista = $this->CuotasCreditoModel->listarCuotasClientes($idCliente);
         header('Content-type: application/json; charset=utf-8');
-        echo json_encode($datosP);
+        echo json_encode($lista);
     }
-
 
 }

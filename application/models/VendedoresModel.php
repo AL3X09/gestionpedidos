@@ -29,7 +29,7 @@ class VendedoresModel extends CI_MODEL {
 
     function listar() {
         try {
-            $sql = "SELECT * FROM vendedores_productos;";
+            $sql = "SELECT * FROM lista_vendedor;";
             $sql = $this->db->query($sql);
             if ($sql->num_rows() > 0) {
                 return $sql->result_array();

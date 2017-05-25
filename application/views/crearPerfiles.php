@@ -162,7 +162,6 @@
             </div>
           </div>
         </div>
-
         <div class="footer-copyright">
           <div class="container center-align">
             Power full by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>

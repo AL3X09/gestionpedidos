@@ -6,8 +6,10 @@ var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.spli
 var img=baseUrl+'img/x.png';
 
 $(document).ready(function() {
+  
     listarPermisos();
     cargarTabla();
+    $(".pulse").sideNav();
 })
 function volver() {
     location.href=baseUrl+"Administracion";

@@ -108,7 +108,7 @@ function cargar1() {
   });
 
 }
-
+//
 function grafiica(datos) {
 
   var Nombre = [];

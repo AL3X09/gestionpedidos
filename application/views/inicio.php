@@ -57,7 +57,7 @@
 
     <nav class="nav-extended deep-orange">
       <div class="nav-wrapper">
-        <a id="logo-container" href="#" class="brand-logo"><img src="<?php echo base_url(); ?>img/logo.gif" width="150" height="90"></a>
+        <a id="logo-container" href="#" class="brand-logo"><img src="<?php echo base_url(); ?>img/O.gif" width="150" height="90"></a>
       </div>
       <div class="nav-content">
         <span class="nav-title">Productos</span>

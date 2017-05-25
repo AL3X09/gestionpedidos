@@ -17,9 +17,9 @@ $(document).ready(function () {
 })
 
 function cargarProductosClientes() {
-   
+
    var idcliente = $("#idcliente").val();
-   
+
    //var td=null;
    $("#jsGrid").jsGrid({
       height: "auto",
@@ -32,7 +32,7 @@ function cargarProductosClientes() {
       pageSize: 10,
       deleteConfirm: "Esta Seguro de eliminar el registro?",
       rowClick: function (args) {
-         window.open(baseUrl + "CuotasCredito/distriCuotasCredito?idcliente=" + idcliente+"&nombre="+args.item['nombre1']+"&apellido="+args.item['apellido1']+"&idpedido="+args.item['idpedido']);
+         window.open(baseUrl + "CuotasCredito/distriCuotasCredito?idcliente=" + idcliente + "&nombre=" + args.item['nombre1'] + "&apellido=" + args.item['apellido1'] + "&idpedido=" + args.item['idpedido']);
          //console.log(args.item['idusuario']);url: baseUrl + 'CuotasCredito/listarProductosClientes?idCliente='+idcliente,
       },
       controller: {
@@ -41,7 +41,7 @@ function cargarProductosClientes() {
             $.ajax({
                type: "GET",
                contentType: "application/json; charset=utf-8",
-               url: baseUrl + 'CuotasCredito/listarProductosClientes?idCliente='+idcliente,
+               url: baseUrl + 'CuotasCredito/listarProductosClientes?idCliente=' + idcliente,
                dataType: "json"
             }).done(function (response) {
                data.resolve(response);
@@ -71,48 +71,43 @@ function cargarProductosClientes() {
          {name: "nombre1", title: "Primer Nombre", type: "text"},
          {name: "nombre2", title: "Primer Nombre", type: "text"},
          {name: "apellido1", title: "Primer Apellido", type: "text"},
-         {name: "apellido2", title: "Segundo Apellido", type: "text"},         
+         {name: "apellido2", title: "Segundo Apellido", type: "text"},
          {name: "nombreProducto", title: "Producto", type: "text"},
          {name: "numeroPedido", title: "COD Compra", type: "text"},
          {name: "nombreForma", title: "Forma de Pago", type: "text"},
          {name: "fechaPedido", title: "Fecha Compra", type: "text"},
-         //{type: "control"}
+                 //{type: "control"}
       ]
    });
 
 }
 
 function listarCuotasCliente() {
-   
+
    var idpedido = $("#idPedido").val();
-   
+
+   var tbody = $("#cuotasAcobrar");
+
    $.ajax({
       url: baseUrl + "CuotasCredito/listarCuotasXCliente",
       method: "POST",
-      data: {idProducto: idpedido},
+      data: {idPedido: idpedido},
    }).done(function (data) {
-
+      tbody.empty();
       $.each(data, function (k, v) {
-         $("#imagen").empty();
-         $("#imagen").attr("src", baseUrl + v.imagen);
-         $("#nombre").val(v.nombre);
-         $("#valor").val(v.presio_unidad);
-         $('#unidades').empty();
-         $('#unidades').append('<option value="" disabled selected>Seleccione...</option>');
-         for (i = 1; i <= v.cantidad; i++) {
-            $('#unidades').append($("<option></option>").val(i).html(i));
-         }
-         for (i = 1; i <= 36; i++) {
+          for (i = 0; i <=v.nombre; i++) {
             $('#selectCantCuotas').append($("<option></option>").val(i).html(i + ' Cuotas'));
          }
-         $('#selectCantCuotas').material_select();
-         $('#unidades').material_select();
-
-
+         td += "<td>" + v.nombre + "</td>";
+         td += "<td>";
+         permiso.forEach(function (element) {
+            td += '&nbsp;&nbsp;<label for="test7"> ' + element + ' </label><input type="checkbox" id="test7" checked="checked" disabled="disabled" />';
+         });
+         td += "</td>";
+         td += '<td></td>';
+         tabla.append("<tr>" + td + "</tr>");
 
       })
-      $("#usarioPidio").val(idUsuario);
-      $("#productoPidio").val(id);
 
    });
 

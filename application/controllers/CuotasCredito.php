@@ -47,8 +47,8 @@ class CuotasCredito extends CI_Controller {
 
   //
   public function listarCuotasXCliente() {
-    $idCliente = $_POST['idCliente'];
-    $lista = $this->CuotasCreditoModel->listarCuotasClientes($idCliente);
+    $idpedido = $_POST['idPedido'];
+    $lista = $this->CuotasCreditoModel->listarCuotasClientes($idpedido);
     header('Content-type: application/json; charset=utf-8');
     echo json_encode($lista);
   }

@@ -19,7 +19,7 @@ class Estadisticas extends CI_Controller {
 	//llamo vista de formulirio para perfiles
    
     //
-    public function listarVendedores()
+    public function listarEstadisticoProductos()
     {
         $lista = $this->VendedoresModel->listar();
         header('Content-type: application/json; charset=utf-8');

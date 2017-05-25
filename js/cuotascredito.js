@@ -12,7 +12,7 @@ $(document).ready(function () {
    //
    $('.modal').modal();
 
-   cargarClientes();
+   cargarCuotas();
 
    $('.modal').modal({
       dismissible: true, // Modal can be dismissed by clicking outside of the modal
@@ -49,7 +49,7 @@ function editar(iduser) {
    location.href = baseUrl + 'Editar?iduser=' + iduser;
 }
 
-function cargarClientes() {
+function cargarCuotas() {
   
    $("#jsGrid").jsGrid({
   height: "auto",
@@ -60,7 +60,7 @@ function cargarClientes() {
   inserting: true,
   editing: true,
   pageSize: 10,
-  deleteConfirm: "Do you really want to delete client?",
+  deleteConfirm: "Esta Seguro de eliminar el registro?",
   //filtering: true,
   controller: {
     loadData: function (filter) {
@@ -68,7 +68,7 @@ function cargarClientes() {
      $.ajax({
        type: "GET",
        contentType: "application/json; charset=utf-8",
-       url: baseUrl + "Pago/listarFormaPago",
+       url: baseUrl + "CuotasCredito/listarCuotas",
        dataType: "json"
        }).done(function(response){
          data.resolve(response);
@@ -98,8 +98,10 @@ function cargarClientes() {
                 }
   },
   fields: [
-    { name: "nombre", type: "text" },
-    { name: "Description", type: "text", width: 150 },
+    { name: "idVendedor", title:"Coddigo", type: "text" },
+    { name: "nombreVendedor", title:"Nombre", type: "text" },
+    { name: "Sueldo", title:"Sueldo", type: "text" },
+    { name: "comision_venta", title:"% Comision", type: "text" },
     { type: "control" }
   ]
 });

@@ -52,3 +52,20 @@ function sumarDias(fecha, dias){
   return fecha;
 }
 /////
+CREATE TABLE `gestionproductos`.`Vendedor` ( `idVendedor` INT NULL AUTO_INCREMENT , `nombreVendedor` VARCHAR(200) NULL , `Sueldo` INT NULL , `flEstado` INT NULL , PRIMARY KEY (`idVendedor`))
+
+
+CREATE TABLE `gestionproductos`.`vendedor_has_producto` ( `idVendedor_producto` INT NULL AUTO_INCREMENT , `fkVendedor` INT NOT NULL , `fkProducto` INT NOT NULL , `Comision` INT NOT NULL , PRIMARY KEY (`idVendedor_producto`)) 
+
+
+CREATE VIEW vendedores_productos AS
+SELECT vendedor.idVendedor, 
+vendedor.nombreVendedor,
+vendedor.Sueldo,
+productos.idproductos,
+productos.comision_venta
+ FROM vendedor
+ INNER JOIN productos
+ ON vendedor.idVendedor = productos.idproductos
+
+

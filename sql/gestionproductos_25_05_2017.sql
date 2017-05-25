@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-05-2017 a las 00:34:35
+-- Tiempo de generación: 25-05-2017 a las 23:33:22
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.1
 
@@ -142,6 +142,32 @@ CREATE TABLE `lista_forma_pago` (
 -- --------------------------------------------------------
 
 --
+-- Estructura Stand-in para la vista `lista_pedidos`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `lista_pedidos` (
+`idpedido` int(11)
+,`consecutivo` int(11)
+,`fkUsuario` int(11)
+,`fkProducto` int(11)
+,`unidades_vendidas` int(11)
+,`fkFormaPago` int(11)
+,`fkTipoPago` int(11)
+,`totalPagado` bigint(20)
+,`diferidoAPagar` bigint(20)
+,`numeroPedido` bigint(50)
+,`fechaPedido` date
+,`flEstado` int(11)
+,`identificacion` bigint(20)
+,`nombreUsuario` varchar(45)
+,`apellido1` varchar(45)
+,`nombreProducto` varchar(50)
+,`presio_unidad` bigint(20)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura Stand-in para la vista `lista_productos`
 -- (Véase abajo para la vista actual)
 --
@@ -206,6 +232,47 @@ CREATE TABLE `lista_usuarios` (
 -- --------------------------------------------------------
 
 --
+-- Estructura Stand-in para la vista `lista_vendedor`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `lista_vendedor` (
+`idvendedor` int(11)
+,`consecutivo` int(11)
+,`nobres` varchar(50)
+,`aepellidos` varchar(50)
+,`correo` varchar(50)
+,`flEstado` int(11)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `lista_vendedores_productos`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `lista_vendedores_productos` (
+`idVendedor` int(11)
+,`NomVendedor` varchar(50)
+,`idproductos` int(11)
+,`NomProducto` varchar(50)
+,`comision_venta` int(11)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `lista_vendedores_total_comision`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `lista_vendedores_total_comision` (
+`idVendedor` int(11)
+,`NomVendedor` varchar(50)
+,`total` decimal(32,0)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `pedido`
 --
 
@@ -229,7 +296,8 @@ CREATE TABLE `pedido` (
 --
 
 INSERT INTO `pedido` (`idpedido`, `consecutivo`, `fkUsuario`, `fkProducto`, `unidades_vendidas`, `fkFormaPago`, `fkTipoPago`, `totalPagado`, `diferidoAPagar`, `numeroPedido`, `fechaPedido`, `flEstado`) VALUES
-(1, 1, 1, 1, 1, 2, 1, 120000, 2, 100001, '2017-05-23', 1);
+(1, 1, 1, 1, 1, 2, 1, 120000, 2, 100001, '2017-05-23', 1),
+(2, 2, 1, 2, 2, 2, 1, 120000, 2, 100002, '2017-05-23', 1);
 
 -- --------------------------------------------------------
 
@@ -276,9 +344,19 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`idproductos`, `consecutivo`, `nombre`, `presio_unidad`, `comision_venta`, `imagen`, `descripcion`, `cantidad`, `flEstado`) VALUES
-(1, 1, 'no1', 120000, 10, '/img/logo.gif', 'un buen equipo', 8, 1),
-(2, 2, 'mh', 1000000, 5, '/img/logo.gif', 'un buen tv', 7, 1),
-(3, 3, 'fg', 5000000, 20, '/img/logo.gif', 'un buen teatro', 2, 1);
+(1, 1, 'Go-Pro mas celular', 120000, 10, '/img/elctronica.png', 'GO-Pro y celular', 8, 1),
+(2, 2, 'NanoPod', 1000000, 5, '/img/nanopod.jpg', 'La ultima generacion de nanos para escuchar tu musica preferida', 7, 1),
+(3, 3, 'Cafetera Digital', 5000000, 20, '/img/cafetera.jpg', 'Una cafera digitalizada, para preparara las vevidas calientes a su gusto', 2, 1),
+(4, 4, 'Televisor 43\'\' 4UHD', 1230000, 20, '/img/televisor.jpeg', 'Increíble contraste con X-tended Dynamic Range PRO\r\nSoberbio realismo con el 4K HDR Processor X1™\r\nAmplia gama de colores con TRILUMINOS Display\r\nAndroid TV™ para películas, juegos y conectividad', 13, 1),
+(5, 5, 'Lavadora Samsung', 1300000, 23, '/img/lavadora.jpeg', 'WD7000HK Combo con Big Capacity, 18 kg\r\n\r\nLavado en Frío (Eco Bubble)\r\nCon Lavado de vapor, mantiene tu ropa impecable y con un agradable aroma', 12, 1),
+(6, 7, 'Computador Personal', 2500000, 15, '/img/pc.jpeg', ' \r\nProcesador: Intel Core i5 7200U\r\n\r\n  \r\nSistema Operativo: Windows 10\r\n\r\n  \r\nMemoria: 6GB\r\n\r\n  \r\nDisco Duro: 1TB\r\n\r\n  \r\nPantalla: 15.6\"', 26, 1),
+(8, 8, 'Play 4', 1399000, 31, '/img/play.jpeg', 'La nueva consola de Sony contará en su interior con un chip personalizado AMD Jaguar x86-64 de ocho núcleos junto a un GPU capaz de generar 1.84 Teraflops de procesamiento a través de una AMD Radeon de \"nueva generación\". Su memoria RAM de 8GB utilizará GDDR5 para proporcionar 176 GB/segundo de ancho de banda.', 9, 1),
+(9, 9, 'Nevera', 900000, 40, '/img/nevera.jpeg', '\r\nNevecón No Frost 687 Lt | Profile PSMS3KEFFSS', 6, 1),
+(10, 10, 'Camara', 200000, 50, '/img/camara.jpeg', 'CAMARA REFLEX NIKOND-3300\r\n\r\nRESOLUCION:24.2 MP\r\n\r\nLENTE 18-55 AFP VR\r\n\r\nPANTALLA LCD:3.0 Pulgadas\r\n\r\nVIDEO:VIDEO FULL HD 1080p a 60/30/24p\r\n\r\nISO:100-12.800 A 25.600\r\n\r\nOTROS:5 CPS Disparo Continuo. MODO GUIA\r\n\r\nACCESORIOS:ESTUCHE + MEMORIA 8 GB', 10, 1),
+(11, 11, 'Reloj Smart', 1500000, 10, '/img/reloj.jpeg', 'Reloj Gear S3 Frontier Negro\r\nTodas las conexiones disponibles.', 5, 1),
+(12, 13, 'Parlante Sony torre', 1500000, 11, '/img/parlante.jpeg', 'Grandes fiestas necesitan un gran sistema de sonido. Con Sound Pressure Horn, el MHC-V7D puede entregar un nivel de presión de sonido de 1550 W2 (RMS 1440 W, SPL 105.5 dB) con un diseño de caja vertical de tamaño reducido. Ponle ritmo a la fiesta con un divertido control de gestos, cambia las luces LED de los parlantes, agrega efectos de DJ o simplemente salta a otra canción con un sencillo movimiento.', 16, 1),
+(13, 13, 'PC TOUCH', 3000000, 20, '/img/lenovo.jpeg', 'Convertible 2 en 1 LENOVO Yoga 510 Ci5 15.6\" Negro', 6, 1),
+(14, 14, 'iPhone 6', 1500000, 10, '/img/cel.jpeg', 'Pantalla: 4.7\"\r\nCámara Trasera: 8 MP 1.5 µ\r\nCámara Forntal: 1.2 MP\r\nSistema Operativo: IOS\r\nMemoria Interna: 32 GB \r\nBatería: ION Litio\r\nProcesador: A8', 8, 1);
 
 -- --------------------------------------------------------
 
@@ -424,6 +502,58 @@ CREATE TABLE `vendedor` (
   `flEstado` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='tabla alacena los vendedores';
 
+--
+-- Volcado de datos para la tabla `vendedor`
+--
+
+INSERT INTO `vendedor` (`idvendedor`, `consecutivo`, `nobres`, `aepellidos`, `correo`, `flEstado`) VALUES
+(1, 1, 'Alex', 'Cifuentes', 'acifuentes@gmail.com', 1),
+(2, 2, 'Leidy', 'Leon', 'lleon@gmail.com', 1),
+(3, 3, 'Yudy ', 'Aristizabal', 'yudykavana@gmail.com', 1),
+(4, 4, 'Andres ', 'Aristizabal', 'daaristizabal@unipanamericana.edu.co', 1),
+(5, 5, 'Adriana', 'Guluma', 'adrianaguluma@gmail.com', 1),
+(6, 6, 'Sergio', 'Arcila', 'checho0516@gmail.com', 1),
+(7, 7, 'Elkin', 'Alzate', 'kinoalgo222@gmail.com', 1),
+(8, 8, 'Leider', 'Ramirez', 'leiderramirez@gmail.com', 1),
+(9, 9, 'Gloria ', 'Serna', 'gloriaserna75@gmail.co', 1),
+(10, 10, 'David', 'Aristizabal', 'davidar19997@gmail.com', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `vendedor_has_comision`
+--
+
+CREATE TABLE `vendedor_has_comision` (
+  `idvendedor_has_comision` int(11) NOT NULL,
+  `fkVendedor` int(11) NOT NULL,
+  `fkProducto` int(11) NOT NULL,
+  `comision_ganada` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='guarda las comisiones ganadas para cada vendedor';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `vendedor_has_producto`
+--
+
+CREATE TABLE `vendedor_has_producto` (
+  `idVendedor_producto` int(11) NOT NULL,
+  `fkVendedor` int(11) NOT NULL,
+  `fkProducto` int(11) NOT NULL COMMENT 'guarda la relacion producto vendedor'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `vendedor_has_producto`
+--
+
+INSERT INTO `vendedor_has_producto` (`idVendedor_producto`, `fkVendedor`, `fkProducto`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 4),
+(4, 1, 5),
+(5, 1, 6);
+
 -- --------------------------------------------------------
 
 --
@@ -432,6 +562,15 @@ CREATE TABLE `vendedor` (
 DROP TABLE IF EXISTS `lista_forma_pago`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `lista_forma_pago`  AS  select `forma_pago`.`idformapago` AS `idformapago`,`forma_pago`.`consecutivo` AS `consecutivo`,`forma_pago`.`nombre` AS `nombre`,`forma_pago`.`flEstado` AS `flEstado` from `forma_pago` where (`forma_pago`.`flEstado` = 1) ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `lista_pedidos`
+--
+DROP TABLE IF EXISTS `lista_pedidos`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `lista_pedidos`  AS  select `pedido`.`idpedido` AS `idpedido`,`pedido`.`consecutivo` AS `consecutivo`,`pedido`.`fkUsuario` AS `fkUsuario`,`pedido`.`fkProducto` AS `fkProducto`,`pedido`.`unidades_vendidas` AS `unidades_vendidas`,`pedido`.`fkFormaPago` AS `fkFormaPago`,`pedido`.`fkTipoPago` AS `fkTipoPago`,`pedido`.`totalPagado` AS `totalPagado`,`pedido`.`diferidoAPagar` AS `diferidoAPagar`,`pedido`.`numeroPedido` AS `numeroPedido`,`pedido`.`fechaPedido` AS `fechaPedido`,`pedido`.`flEstado` AS `flEstado`,`usuarios`.`identificacion` AS `identificacion`,`usuarios`.`nombre1` AS `nombreUsuario`,`usuarios`.`apellido1` AS `apellido1`,`productos`.`nombre` AS `nombreProducto`,`productos`.`presio_unidad` AS `presio_unidad` from ((`pedido` join `usuarios` on((`usuarios`.`idusuario` = `pedido`.`fkUsuario`))) join `productos` on((`productos`.`idproductos` = `pedido`.`fkProducto`))) where (`pedido`.`flEstado` = 1) ;
 
 -- --------------------------------------------------------
 
@@ -468,6 +607,33 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `lista_usuarios`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `lista_usuarios`  AS  select `u`.`idusuario` AS `idusuario`,`u`.`nombre1` AS `nombre1`,`u`.`nombre2` AS `nombre2`,`u`.`apellido1` AS `apellido1`,`u`.`apellido2` AS `apellido2`,`u`.`identificacion` AS `identificacion`,`u`.`celular` AS `celular`,`r`.`nombre` AS `rol` from ((((`usuarios` `u` join `usuario_has_roles` `ur` on((`ur`.`fkusuario` = `u`.`idusuario`))) join `roles` `r` on((`r`.`idroles` = `ur`.`fkroles`))) join `roles_has_permisos` `rp` on((`rp`.`fkroles` = `r`.`idroles`))) join `permisos` `p` on((`p`.`idpermisos` = `rp`.`fkpermisos`))) where (`u`.`flestado` = 1) group by `u`.`idusuario` ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `lista_vendedor`
+--
+DROP TABLE IF EXISTS `lista_vendedor`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `lista_vendedor`  AS  select `vendedor`.`idvendedor` AS `idvendedor`,`vendedor`.`consecutivo` AS `consecutivo`,`vendedor`.`nobres` AS `nobres`,`vendedor`.`aepellidos` AS `aepellidos`,`vendedor`.`correo` AS `correo`,`vendedor`.`flEstado` AS `flEstado` from `vendedor` ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `lista_vendedores_productos`
+--
+DROP TABLE IF EXISTS `lista_vendedores_productos`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `lista_vendedores_productos`  AS  select `vendedor`.`idvendedor` AS `idVendedor`,`vendedor`.`nobres` AS `NomVendedor`,`productos`.`idproductos` AS `idproductos`,`productos`.`nombre` AS `NomProducto`,`productos`.`comision_venta` AS `comision_venta` from ((`vendedor_has_producto` `vhp` join `vendedor` on((`vendedor`.`idvendedor` = `vhp`.`fkVendedor`))) join `productos` on((`productos`.`idproductos` = `vhp`.`fkProducto`))) where ((`productos`.`flEstado` = 1) and (`vendedor`.`flEstado` = 1)) ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `lista_vendedores_total_comision`
+--
+DROP TABLE IF EXISTS `lista_vendedores_total_comision`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `lista_vendedores_total_comision`  AS  select `vendedor`.`idvendedor` AS `idVendedor`,`vendedor`.`nobres` AS `NomVendedor`,sum(`vhc`.`comision_ganada`) AS `total` from ((`vendedor_has_comision` `vhc` join `vendedor` on((`vendedor`.`idvendedor` = `vhc`.`fkVendedor`))) join `pedido` on((`pedido`.`fkProducto` = `vhc`.`fkProducto`))) where (`vendedor`.`flEstado` = 1) group by `vhc`.`fkVendedor` ;
 
 --
 -- Índices para tablas volcadas
@@ -556,6 +722,18 @@ ALTER TABLE `vendedor`
   ADD PRIMARY KEY (`idvendedor`);
 
 --
+-- Indices de la tabla `vendedor_has_comision`
+--
+ALTER TABLE `vendedor_has_comision`
+  ADD PRIMARY KEY (`idvendedor_has_comision`);
+
+--
+-- Indices de la tabla `vendedor_has_producto`
+--
+ALTER TABLE `vendedor_has_producto`
+  ADD PRIMARY KEY (`idVendedor_producto`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -578,7 +756,7 @@ ALTER TABLE `forma_pago`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `idpedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idpedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `permisos`
 --
@@ -588,7 +766,7 @@ ALTER TABLE `permisos`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `idproductos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idproductos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=543245325;
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
@@ -613,7 +791,17 @@ ALTER TABLE `usuario_has_cuenta_pedido`
 -- AUTO_INCREMENT de la tabla `vendedor`
 --
 ALTER TABLE `vendedor`
-  MODIFY `idvendedor` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idvendedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123457;
+--
+-- AUTO_INCREMENT de la tabla `vendedor_has_comision`
+--
+ALTER TABLE `vendedor_has_comision`
+  MODIFY `idvendedor_has_comision` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `vendedor_has_producto`
+--
+ALTER TABLE `vendedor_has_producto`
+  MODIFY `idVendedor_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- Restricciones para tablas volcadas
 --

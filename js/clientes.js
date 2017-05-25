@@ -82,14 +82,14 @@ function cargarProductosClientes() {
 
 }
 
-function cargarProductosClientes() {
+function listarCuotasCliente() {
    
    var idpedido = $("#idPedido").val();
    
    $.ajax({
       url: baseUrl + "CuotasCredito/listarCuotasXCliente",
       method: "POST",
-      data: {idProducto: id},
+      data: {idProducto: idpedido},
    }).done(function (data) {
 
       $.each(data, function (k, v) {

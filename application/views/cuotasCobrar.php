@@ -82,12 +82,21 @@
     </div>
 
     <div class="container" id="administracion">
-      <div class="row" id="divProductos">
+      <div class="row">
 
-        <div class="col s12 m12 l12">
-          <!--cargo la grilla-->
+        <table class="striped responsive-table">
+        <thead>
+          <tr>
+              <th>Fecha</th>
+              <th>Valor</th>
+              <th>N° Cuota</th>
+          </tr>
+        </thead>
 
-        </div>
+        <tbody id="cuotasAcobrar">
+          
+        </tbody>
+      </table>
 
       </div>
     </div>
@@ -137,7 +146,7 @@
     <script src="<?php echo base_url(); ?>js/clientes.js"></script>
     <script>
       $(document).ready(function () {
-        listarCuotas();
+        listarCuotasCliente();
          
       }
     </script>

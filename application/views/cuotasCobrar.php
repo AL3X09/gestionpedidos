@@ -145,10 +145,11 @@
     <script src="<?php echo base_url(); ?>js/materialize.js"></script>
     <script src="<?php echo base_url(); ?>js/clientes.js"></script>
     <script>
+      
       $(document).ready(function () {
         listarCuotasCliente();
          
-      }
+      });
     </script>
     <script src="<?php echo base_url(); ?>librerias/jsgrid-1.5.3/db.js"></script>
     <script src="<?php echo base_url(); ?>librerias/jsgrid-1.5.3/jsgrid.core.js"></script>

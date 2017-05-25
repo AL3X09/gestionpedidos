@@ -94,18 +94,30 @@ function listarCuotasCliente() {
       data: {idPedido: idpedido},
    }).done(function (data) {
       tbody.empty();
+
       $.each(data, function (k, v) {
-          for (i = 0; i <=v.nombre; i++) {
-            $('#selectCantCuotas').append($("<option></option>").val(i).html(i + ' Cuotas'));
+         console.log(v.fechaPedido)
+
+         var RFECHA = v.fechaPedido;
+         
+         for (i = 0; i < parseInt(v.numDias); i++) {
+           
+            var td = "<tr><td>" + RFECHA + "</td>";
+            td += "<td>" + v.totalPagado + "</td>";
+            td += "<td>" + v.totalPagado + "</td></tr>";
+            tbody.append(td);
+            var aFecha = RFECHA.split('-');
+            var aMes=parseInt(aFecha[1])+1;
+            var aAnio=parseInt(aFecha[0]);
+            if (aMes>12) {
+               aMes=1
+               aAnio=aAnio+1;
+            }
+            var fecha = aAnio + '-' + aMes + '-' + v.numDias;
+            delete RFECHA;
+            RFECHA = fecha;
+            
          }
-         td += "<td>" + v.nombre + "</td>";
-         td += "<td>";
-         permiso.forEach(function (element) {
-            td += '&nbsp;&nbsp;<label for="test7"> ' + element + ' </label><input type="checkbox" id="test7" checked="checked" disabled="disabled" />';
-         });
-         td += "</td>";
-         td += '<td></td>';
-         tabla.append("<tr>" + td + "</tr>");
 
       })
 

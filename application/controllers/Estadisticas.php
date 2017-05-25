@@ -8,7 +8,7 @@ class Estadisticas extends CI_Controller {
     public function __construct() {
         parent:: __construct();
         $this->load->helper(array('url', 'form', 'array', 'html'));
-        $this->load->model(array('VendedoresModel', '',''));
+        $this->load->model(array('EstadisticasModel', '',''));
     }
     //
 	public function index()
@@ -21,18 +21,9 @@ class Estadisticas extends CI_Controller {
     //
     public function listarEstadisticoProductos()
     {
-        $lista = $this->VendedoresModel->listar();
+        $lista = $this->EstadisticasModel->listar();
         header('Content-type: application/json; charset=utf-8');
         echo json_encode($lista);
     }
     
-    public function listarVendedosID()
-    {
-        $idproducto = $_POST['idProducto'];
-        $datosP = $this->ProductosModel->listarProductobyID($idproducto);
-        header('Content-type: application/json; charset=utf-8');
-        echo json_encode($datosP);
-    }
-
-
 }

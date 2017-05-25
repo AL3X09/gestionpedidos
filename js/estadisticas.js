@@ -12,7 +12,7 @@ $(document).ready(function () {
    //
    $('.modal').modal();
 
-   cargarVendedores();
+   cargar1();
 
    $('.modal').modal({
       dismissible: true, // Modal can be dismissed by clicking outside of the modal
@@ -49,7 +49,7 @@ function editar(iduser) {
    location.href = baseUrl + 'Editar?iduser=' + iduser;
 }
 
-function cargarVendedores() {
+function cargar1() {
   
    $("#jsGrid").jsGrid({
   height: "auto",
@@ -68,7 +68,7 @@ function cargarVendedores() {
      $.ajax({
        type: "GET",
        contentType: "application/json; charset=utf-8",
-       url: baseUrl + "Vendedores/listarVendedores",
+       url: baseUrl + "Estadisticas/listarEstadisticoProductos",
        dataType: "json"
        }).done(function(response){
          data.resolve(response);
@@ -98,9 +98,9 @@ function cargarVendedores() {
                 }
   },
   fields: [
-    { name: "idVendedor", title:"Coddigo", type: "text" },
-    { name: "nombreVendedor", title:"Nombre", type: "text" },
-    { name: "Sueldo", title:"Sueldo", type: "text" },
+    //{ name: "idVendedor", title:"Coddigo", type: "text" },
+    { name: "nombre", title:"Nombre", type: "text" },
+    { name: "cantidad", title:"Unidades Existentes", type: "text" },
     { name: "comision_venta", title:"% Comision", type: "text" },
     { type: "control" }
   ]

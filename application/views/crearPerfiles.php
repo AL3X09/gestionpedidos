@@ -58,35 +58,12 @@
       <div class="nav-wrapper">
         <a id="logo-container" href="#" class="brand-logo"><img src="<?php echo base_url(); ?>img/O.gif" width="150" height="90"></a>
       </div>
+      
       <div class="nav-content">
-        <span class="nav-title">Productos</span>
+        
         <a href="#" data-activates="slide-out" class="btn-floating btn-large halfway-fab waves-effect waves-light teal pulse" id="menubutton">
           <i class="material-icons">menu</i>
         </a>
-      </div>
-    </nav>
-
-    <div class="section no-pad-bot" id="index-banner">
-      <div class="container">
-
-        <h4 class="header center orange-text">CREAR ROLES</h4>
-
-      </div>
-    </div>
-
-
-
-    <nav class="blue darken-1 nav-extended" role="navigation">
-      <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo" onclick="volver()"><img src="<?php echo base_url(); ?>img/logo.svg" width="100" height="80"></a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li>
-            <div class="chip">
-              <img src="<?php echo base_url(); ?>img/logo.svg" alt="Contact Person">
-              Jane Doe
-            </div>
-          </li>
-          <li><a href="badges.html">Cerrar Sesion</a></li>
-        </ul>
       </div>
       <br/>
       <div class="nav-content">
@@ -96,7 +73,9 @@
         </ul>
       </div>
     </nav>
+    
     <div id="test1" class="col s12">
+      <h4 class="header center orange-text">LISTA ROLES</h4>
       <div class="container">
         <table class="striped">
           <thead>

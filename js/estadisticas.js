@@ -116,13 +116,19 @@ function grafiica(datos) {
   var cantidaVendidos = [];
 
   $.each(datos, function (key, value) {
-    console.log(value);
+   
     Nombre.push(value.nombre);
     cantidaExisten.push(value.cantidad);
     cantidaVendidos.push(value.unidades_vendidas);
     //alert( key + ": " + value );
   });
-  //total.push(v.total);
+  //boton de exporte
+  var Boton = '<a class="waves-effect waves-light btn" id="exportardatos"><i class="material-icons right">cloud</i>EXPORTAR</a>';
+      $('#divexportBTN').html(Boton);
+
+      $('#exportardatos').click(function () {
+        exportarCantidades(datos);
+      });
 
    var config = {
         type: 'bar',
@@ -181,6 +187,26 @@ function grafiica(datos) {
 
 
   //FIN SECCION PARA ARMAR LA GRAFICA
+
+}
+
+/*|------------------------------------------------------------------------------------|*
+ |FUNCION EXPORTO A EXCEL  |
+ |-------------------------------------------------------------------------------------|*/
+function exportarCantidades(data) {
+   var canvas = document.getElementById('canvasGrafica');
+   var dataURL = canvas.toDataURL();
+  $.ajax({
+    url: baseUrl+'ControladorExporte/exportarCantidades',
+    method: 'POST',
+    data: {data: data,grafica:dataURL},
+
+    beforeSend: function () {
+    },
+    success: function (data) {
+      alertify.alert(data);
+    }
+  });
 
 }
 

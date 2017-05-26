@@ -6,6 +6,7 @@
     <link href="<?php echo base_url(); ?>css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="<?php echo base_url(); ?>librerias/jsgrid-1.5.3/jsgrid.min.css" type="text/css" rel="stylesheet"/>
     <link href="<?php echo base_url(); ?>librerias/jsgrid-1.5.3/jsgrid-theme.min.css" type="text/css" rel="stylesheet"/>
+    <link href="<?php echo base_url(); ?>css/alertify.min.css" type="text/css" rel="stylesheet"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
     <title> COMISIONES </title>
   </head>
@@ -93,6 +94,12 @@
           <canvas id="canvasGrafica" height="150px"></canvas>
         </div>
       </div>
+      
+      <div class="row">
+        <div class="col s12 m6 l6" id="divexportBTN">
+          
+        </div>
+      </div>
 
     </div>
 
@@ -146,6 +153,7 @@
     <script src="<?php echo base_url(); ?>librerias/jsgrid-1.5.3/fields/jsgrid.field.text.js"></script>
     <script src="<?php echo base_url(); ?>librerias/jsgrid-1.5.3/fields/jsgrid.field.number.js"></script>
     <script src="<?php echo base_url(); ?>librerias/jsgrid-1.5.3/fields/jsgrid.field.control.js"></script>
+    <script src="<?php echo base_url(); ?>js/alertify.min.js"></script>
     <!-- javascript para las graficas -->
     <script type="text/javascript" src="<?php echo base_url(); ?>librerias/Chart.js/Chart.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>librerias/Chart.js/Chart.bundle.min.js"></script>

@@ -14,7 +14,7 @@
         <h2 class="name">SystemADL</h2>
         <div>Av Cll 138 No. 15 - 24, La Colina </div>
         <div>(57) 3225708056</div>
-        <div><a href="mailto:company@example.com">sysadl@ejemplo.com</a></div>
+        <div><a href="mailto:company@example.com">sysadl@pana.com</a></div>
       </div>
       </div>
     </header>
@@ -24,7 +24,7 @@
           <div class="to">FACTURA A:</div>
           <h2 class="name">Leidy Leon R</h2>
           <div class="address">Dg 61B No. 13-22, San Luis</div>
-          <div class="email"><a href="mailto:john@example.com">lady@example.com</a></div>
+          <div class="email"><a href="mailto:john@example.com">lady@pana.com</a></div>
         </div>
         <div id="invoice">
           <h1>FACTURA 3-2-1</h1>

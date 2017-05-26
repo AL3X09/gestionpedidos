@@ -16,7 +16,7 @@
 
     $USUARIO = unserialize($_SESSION['usuario']);
 
-    echo '<input type="hidden" value="' . $USUARIO['idusuario'] . '" id="idusuario"/>';
+    echo '<input type="hidden" value="' . $USUARIO['idusuario'] . '" id="hiddenUser"/>';
 
     ob_end_flush();
     ?>
@@ -30,16 +30,16 @@
           <a href="#!name"><span class="white-text name"><?php echo $USUARIO['usuario'] ?></span></a>
         </div></li>
       <li><a href="<?php echo base_url(); ?>Login"><i class="material-icons">group_work</i>Inicio</a></li>
-      <li><a href="<?php echo base_url(); ?>Vendedores"><i class="material-icons">shopping_basket</i>Liquidacion Comisiones</a></li>
+      <li><a href="<?php echo base_url(); ?>Vendedores"><i class="material-icons">shopping_basket</i>Vendedores</a></li>
       <li><a href="<?php echo base_url(); ?>CuotasCredito" ><i class="material-icons">payment</i>Cuotas Crédito</a></li>
       <li><a href="<?php echo base_url(); ?>Facturas"><i class="material-icons">note_add</i>Facturas</a></li>
-      <!--<li><a href="#!"><i class="material-icons">store</i>Clientes</a></li>-->
-      <li><a href="#!"><i class="material-icons">spellcheck</i>Liquidación Nomina</a></li>
+      <!--<li><a href="#!"><i class="material-icons">store</i>Clientes</a></li>
+      <li><a href="#!"><i class="material-icons">spellcheck</i>Liquidación Nomina</a></li>-->
       <?php
-      if ($USUARIO['ver'] == 1 and ( $USUARIO['rol'] == "Administrador" or $USUARIO['rol'] == "Cobros")) {
+      if ($USUARIO['ver'] == 1 and ($USUARIO['rol'] == "Administrador" or $USUARIO['rol'] == "Cobros")) {
         ?>
-        <li><a href="<?php echo base_url(); ?>GestionCobros"><i class="material-icons">class</i>Gestion Cobros</a></li>
-        <?php
+      <li><a href="<?php echo base_url(); ?>GestionCobros"><i class="material-icons">class</i>Gestion Cobros</a></li>
+       <?php
       }
       ?>
       <li><a href="<?php echo base_url(); ?>Estadisticas"><i class="material-icons">insert_chart</i>Estadisticas</a></li>
@@ -132,7 +132,7 @@
               <i class="material-icons right">send</i>
             </button>
           </div>
-          <input type="hidden" name="hiddenEditar" id="hiddenEditar" value="">
+          <input type="hidden" name="hiddenEditar" id="hiddenEditar">
         </form>
       </div>
 

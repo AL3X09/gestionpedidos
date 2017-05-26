@@ -21,7 +21,7 @@ class EditarModel extends CI_MODEL {
 
     //obtiene consecutivp
     function consec_usuario() {
-        return $this->db->count_all('usuario');
+        return $this->db->count_all('usuarios');
     }
 
 //obtiene todos las nacionalidades por id de llegada
@@ -39,7 +39,7 @@ class EditarModel extends CI_MODEL {
     try {
         $sql = "
           SELECT *   
-          FROM usuario U
+          FROM usuarios U
           INNER JOIN usuario_has_roles UR ON UR.fkusuario=U.idusuario
           WHERE U.idusuario=".$idUsuario."";
         $sql=$this->db->query($sql);
@@ -58,7 +58,7 @@ class EditarModel extends CI_MODEL {
         try {
             $consec= $this->consec_usuario();
             //$consec+=1;
-            $stmt = $this->db->conn_id->prepare("UPDATE usuario 
+            $stmt = $this->db->conn_id->prepare("UPDATE usuarios 
                     SET 
                     nombre1=?,
                     nombre2=?,

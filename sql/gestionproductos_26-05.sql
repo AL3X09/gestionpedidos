@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-05-2017 a las 23:33:22
+-- Tiempo de generación: 26-05-2017 a las 19:25:25
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.1
 
@@ -72,7 +72,7 @@ INSERT INTO usuario_has_cuenta_pedido
 VALUES(NULL,fkusuario,fkpedido,numcuenta,1)$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `update_estadoUsuario` (IN `pkusuario` INT)  NO SQL
-UPDATE usuario AS U SET U.flestado=0
+UPDATE usuarios AS U SET U.flestado=0
 WHERE U.idusuario=pkusuario$$
 
 DELIMITER ;
@@ -269,6 +269,19 @@ CREATE TABLE `lista_vendedores_total_comision` (
 ,`NomVendedor` varchar(50)
 ,`total` decimal(32,0)
 );
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pago`
+--
+
+CREATE TABLE `pago` (
+  `idpago` int(11) NOT NULL,
+  `fkPedido` int(11) NOT NULL,
+  `num_pago` int(11) NOT NULL,
+  `flEstado` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -658,6 +671,12 @@ ALTER TABLE `forma_pago`
   ADD PRIMARY KEY (`idformapago`);
 
 --
+-- Indices de la tabla `pago`
+--
+ALTER TABLE `pago`
+  ADD PRIMARY KEY (`idpago`);
+
+--
 -- Indices de la tabla `pedido`
 --
 ALTER TABLE `pedido`
@@ -752,6 +771,11 @@ ALTER TABLE `cuenta`
 --
 ALTER TABLE `forma_pago`
   MODIFY `idformapago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT de la tabla `pago`
+--
+ALTER TABLE `pago`
+  MODIFY `idpago` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `pedido`
 --

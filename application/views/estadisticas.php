@@ -6,6 +6,7 @@
     <link href="<?php echo base_url(); ?>css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="<?php echo base_url(); ?>librerias/jsgrid-1.5.3/jsgrid.min.css" type="text/css" rel="stylesheet"/>
     <link href="<?php echo base_url(); ?>librerias/jsgrid-1.5.3/jsgrid-theme.min.css" type="text/css" rel="stylesheet"/>
+    <link href="<?php echo base_url(); ?>css/alertify.min.css" type="text/css" rel="stylesheet"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
     <title> COMISIONES </title>
   </head>
@@ -33,16 +34,16 @@
           <a href="#!name"><span class="white-text name"><?php echo $USUARIO['usuario'] ?></span></a>
         </div></li>
       <li><a href="<?php echo base_url(); ?>Login"><i class="material-icons">group_work</i>Inicio</a></li>
-      <li><a href="<?php echo base_url(); ?>Vendedores"><i class="material-icons">shopping_basket</i>Liquidacion Comisiones</a></li>
+      <li><a href="<?php echo base_url(); ?>Vendedores"><i class="material-icons">shopping_basket</i>Vendedores</a></li>
       <li><a href="<?php echo base_url(); ?>CuotasCredito" ><i class="material-icons">payment</i>Cuotas Crédito</a></li>
       <li><a href="<?php echo base_url(); ?>Facturas"><i class="material-icons">note_add</i>Facturas</a></li>
-      <!--<li><a href="#!"><i class="material-icons">store</i>Clientes</a></li>-->
-      <li><a href="#!"><i class="material-icons">spellcheck</i>Liquidación Nomina</a></li>
+      <!--<li><a href="#!"><i class="material-icons">store</i>Clientes</a></li>
+      <li><a href="#!"><i class="material-icons">spellcheck</i>Liquidación Nomina</a></li>-->
       <?php
-      if ($USUARIO['ver'] == 1 and ( $USUARIO['rol'] == "Administrador" or $USUARIO['rol'] == "Cobros")) {
+      if ($USUARIO['ver'] == 1 and ($USUARIO['rol'] == "Administrador" or $USUARIO['rol'] == "Cobros")) {
         ?>
-        <li><a href="<?php echo base_url(); ?>GestionCobros"><i class="material-icons">class</i>Gestion Cobros</a></li>
-        <?php
+      <li><a href="<?php echo base_url(); ?>GestionCobros"><i class="material-icons">class</i>Gestion Cobros</a></li>
+       <?php
       }
       ?>
       <li><a href="<?php echo base_url(); ?>Estadisticas"><i class="material-icons">insert_chart</i>Estadisticas</a></li>
@@ -88,9 +89,16 @@
         </div>
 
       </div>
-      <div class="row">
-        <div class="col s12 m12 l12">
+       <div class="section"></div>
+      
+        
           <canvas id="canvasGrafica" height="150px"></canvas>
+       
+      
+      
+      <div class="row">
+        <div class="col s12 m6 l6" id="divexportBTN">
+          
         </div>
       </div>
 
@@ -146,6 +154,7 @@
     <script src="<?php echo base_url(); ?>librerias/jsgrid-1.5.3/fields/jsgrid.field.text.js"></script>
     <script src="<?php echo base_url(); ?>librerias/jsgrid-1.5.3/fields/jsgrid.field.number.js"></script>
     <script src="<?php echo base_url(); ?>librerias/jsgrid-1.5.3/fields/jsgrid.field.control.js"></script>
+    <script src="<?php echo base_url(); ?>js/alertify.min.js"></script>
     <!-- javascript para las graficas -->
     <script type="text/javascript" src="<?php echo base_url(); ?>librerias/Chart.js/Chart.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>librerias/Chart.js/Chart.bundle.min.js"></script>

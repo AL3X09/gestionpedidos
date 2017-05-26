@@ -16,7 +16,7 @@
 
     $USUARIO = unserialize($_SESSION['usuario']);
 
-    echo '<input type="hidden" value="' . $USUARIO['idusuario'] . '" id="idusuario"/>';
+    echo '<input type="hidden" value="' . $USUARIO['idusuario'] . '" id="hiddenUser"/>';
 
     ob_end_flush();
     ?>
@@ -132,7 +132,7 @@
               <i class="material-icons right">send</i>
             </button>
           </div>
-          <input type="hidden" name="hiddenEditar" id="hiddenEditar" value="">
+          <input type="hidden" name="hiddenEditar" id="hiddenEditar">
         </form>
       </div>
 

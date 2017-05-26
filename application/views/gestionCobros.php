@@ -32,15 +32,30 @@
           <a href="#!user"><img class="circle" src="<?php echo base_url(); ?>img/p1.png"></a>
           <a href="#!name"><span class="white-text name"><?php echo $USUARIO['usuario'] ?></span></a>
         </div></li>
-      <li><a href="" onclick="inicio()"><i class="material-icons">group_work</i>Inicio</a></li>
-      <li><a href="#!"><i class="material-icons">shopping_basket</i>Pedidos</a></li>
-      <li><a href="#!"><i class="material-icons">payment</i>Cuotas</a></li>
-      <li><a href="#!"><i class="material-icons">store</i>Inventarios</a></li>
-      <li><a href="#!"><i class="material-icons">assignment_ind</i>Administracion</a></li>
+      <li><a href="<?php echo base_url(); ?>Login"><i class="material-icons">group_work</i>Inicio</a></li>
+      <li><a href="<?php echo base_url(); ?>Vendedores"><i class="material-icons">shopping_basket</i>Vendedores</a></li>
+      <li><a href="<?php echo base_url(); ?>CuotasCredito" ><i class="material-icons">payment</i>Cuotas Crédito</a></li>
+      <li><a href="<?php echo base_url(); ?>Facturas"><i class="material-icons">note_add</i>Facturas</a></li>
+      <!--<li><a href="#!"><i class="material-icons">store</i>Clientes</a></li>
+      <li><a href="#!"><i class="material-icons">spellcheck</i>Liquidación Nomina</a></li>-->
+      <?php
+      if ($USUARIO['ver'] == 1 and ($USUARIO['rol'] == "Administrador" or $USUARIO['rol'] == "Cobros")) {
+        ?>
+      <li><a href="<?php echo base_url(); ?>GestionCobros"><i class="material-icons">class</i>Gestion Cobros</a></li>
+       <?php
+      }
+      ?>
+      <li><a href="<?php echo base_url(); ?>Estadisticas"><i class="material-icons">insert_chart</i>Estadisticas</a></li>
+      <?php
+      if ($USUARIO['ver'] == 1 and $USUARIO['crear'] == 2 and $USUARIO['rol'] == "Administrador") {
+        ?>
+        <li><a href="<?php echo base_url(); ?>Administracion"><i class="material-icons">assignment_ind</i>Administracion</a></li>
+        <?php
+      }
+      ?>
       <li><div class="divider"></div></li>
       <li><a class="waves-effect" href="<?php echo base_url(); ?>Login/cerrarSesion"><i class="material-icons">power_settings_new</i>Cerrar Sesion</a></li>
     </ul>
-
     <nav class="nav-extended deep-orange">
       <div class="nav-wrapper">
         <a id="logo-container" href="#" class="brand-logo"><img src="<?php echo base_url(); ?>img/logo.gif" width="150" height="90"></a>

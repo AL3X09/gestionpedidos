@@ -39,7 +39,7 @@ function listarDatos() {
         data :{ idusuario:iduser},
         //async: false,
         success: function (data) {
-            //console.log(data);
+            console.log(data);
             $.each(data, function (k, v) {
                 $('#hiddenEditar').val(v.idusuario);
                $('#nombre1').val(v.nombre1);

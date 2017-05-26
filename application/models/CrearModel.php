@@ -21,7 +21,7 @@ class CrearModel extends CI_MODEL {
 
     //obtiene consecutivp
     function consec_usuario() {
-        return $this->db->count_all('usuario');
+        return $this->db->count_all('usuarios');
     }
 
 //obtiene todos las nacionalidades por id de llegada

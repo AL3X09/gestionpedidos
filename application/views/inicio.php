@@ -55,6 +55,7 @@
       <li><a class="waves-effect" href="<?php echo base_url(); ?>Login/cerrarSesion"><i class="material-icons">power_settings_new</i>Cerrar Sesion</a></li>
     </ul>
 
+    
     <nav class="nav-extended deep-orange">
       <div class="nav-wrapper">
         <a id="logo-container" href="#" class="brand-logo"><img src="<?php echo base_url(); ?>img/logo.gif" width="150" height="100"></a>

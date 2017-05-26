@@ -81,16 +81,16 @@
         <form id="formpedidousuario">
           <div class="row">
             <div class="input-field col s12 m6">
-              <input placeholder="Nombre" id="nombre" name="nombre" type="text" class="validate" disabled >
+              <input placeholder="Nombre" id="Nombre" name="nombre" type="text" class="validate text-darken-2" readonly="true" >
               <label for="first_name">Nombre</label>
             </div>
             <div class="input-field col s12 m6">
-              <input placeholder="ingrese valor" id="valor" name="valor" type="text" class="validate" disabled >
+              <input placeholder="ingrese valor" id="Apellido" name="Apellido" type="text" class="validate" readonly="true" >
               <label for="first_name">Apellido</label>
             </div>
             <div class="input-field col s12 m6">
-              <input placeholder="ingrese valor" id="valor" name="valor" type="text" class="validate" disabled >
-              <label for="first_name">Cuentas Pendientes</label>
+              <input placeholder="ingrese valor" id="cantDebe" name="cantDebe" type="text" class="validate text-darken-4" readonly="true" >
+              <label for="first_name">Cuotas Pendientes</label>
             </div>
           </div>
           <input  id="usarioPidio" name="usarioPidio" type="hidden">

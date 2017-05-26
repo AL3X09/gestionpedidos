@@ -107,11 +107,11 @@
               <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" width="250" id="imagen">
             </div>
             <div class="input-field col s12 m6">
-              <input placeholder="Nombre" id="nombre" name="nombre" type="text" class="validate" disabled >
+              <input placeholder="Nombre" id="nombre" name="nombre" type="text" class="validate text-lighten-3" readonly="true" >
               <label for="first_name">Nombre</label>
             </div>
             <div class="input-field col s12 m6">
-              <input placeholder="ingrese valor" id="valor" name="valor" type="text" class="validate" disabled >
+              <input placeholder="ingrese valor" id="valor" name="valor" type="text" class="validate text-lighten-3" readonly="true" >
               <label for="first_name">Valor por Unidad</label>
             </div>
             <div class="input-field col s12 m6">

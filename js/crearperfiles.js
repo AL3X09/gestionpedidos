@@ -40,9 +40,8 @@ function guardar() {
             console.log(data);
             var $toastContent = $("<span>"+data.msg+"</span>");
             Materialize.toast($toastContent, 5000);
-            $.each(data, function (k, v) {
-
-            });
+             setInterval(function(){ location.href = baseUrl + 'crearRoles'; },2000);
+            
         }
     });
 }

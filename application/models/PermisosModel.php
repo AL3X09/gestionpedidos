@@ -120,7 +120,7 @@ class PermisosModel extends CI_MODEL {
           R.nombre AS rol,
           GROUP_CONCAT(RP.fkpermisos) AS permisos
           -- GROUP_CONCAT(P.nombre) AS permisos
-          FROM usuario AS U
+          FROM usuarios AS U
           INNER JOIN usuario_has_roles AS UR ON UR.fkusuario=U.idusuario
           INNER JOIN roles AS R ON R.idroles=UR.fkroles
           INNER JOIN roles_has_permisos AS RP ON RP.fkroles=R.idroles
@@ -147,7 +147,7 @@ class PermisosModel extends CI_MODEL {
           IF(RP2.fkpermisos=2,2,0) as crear,
           IF(RP3.fkpermisos=3,3,0) as editar,
           IF(RP4.fkpermisos=4,4,0) as eliminar
-          FROM usuario AS U
+          FROM usuarios AS U
           LEFT JOIN usuario_has_roles AS UR ON UR.fkusuario=U.idusuario
           LEFT JOIN roles_has_permisos AS RP1 ON RP1.fkroles= UR.fkroles AND RP1.fkpermisos=1 
           LEFT JOIN roles_has_permisos AS RP2 ON RP2.fkroles= UR.fkroles AND RP2.fkpermisos=2
@@ -185,7 +185,7 @@ class PermisosModel extends CI_MODEL {
           IF(RP2.fkpermisos=2,2,0) as crear,
           IF(RP3.fkpermisos=3,3,0) as editar,
           IF(RP4.fkpermisos=4,4,0) as eliminar
-          FROM usuario AS U
+          FROM usuarios AS U
           INNER JOIN usuario_has_roles AS UR ON UR.fkusuario=U.idusuario
           INNER JOIN roles AS R ON R.idroles=UR.fkroles
           LEFT JOIN roles_has_permisos AS RP1 ON RP1.fkroles= UR.fkroles AND RP1.fkpermisos=1 
@@ -214,7 +214,7 @@ class PermisosModel extends CI_MODEL {
           SELECT
           P.nombre,
           RP.fkpermisos AS permisos    
-          FROM usuario AS U
+          FROM usuarios AS U
           INNER JOIN usuario_has_roles AS UR ON UR.fkusuario=U.idusuario
           INNER JOIN roles AS R ON R.idroles=UR.fkroles
           INNER JOIN roles_has_permisos AS RP ON RP.fkroles=R.idroles

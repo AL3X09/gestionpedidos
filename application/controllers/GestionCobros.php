@@ -23,7 +23,7 @@ class GestionCobros extends CI_Controller {
     {
         $idCliente=$_POST['idCliente'];
         //$idPedido=$_POST['idPedido'];
-        $lista = $this->VendedoresModel->listarPendientes($idCliente);
+        $lista = $this->GestionCobrosModel->listarPendientesClientes($idCliente);
         header('Content-type: application/json; charset=utf-8');
         echo json_encode($lista);
     }

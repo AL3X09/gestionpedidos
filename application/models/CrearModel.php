@@ -58,7 +58,7 @@ class CrearModel extends CI_MODEL {
         try {
             $consec= $this->consec_usuario();
             //$consec+=1;
-            $stmt = $this->db->conn_id->prepare("INSERT INTO usuario VALUES (NULL,?,?,?,?,?,?,?,?,?,1)");
+            $stmt = $this->db->conn_id->prepare("INSERT INTO usuarios VALUES (NULL,?,?,?,?,?,?,?,?,?,1)");
             $stmt->bind_param("issssiiss",$consec,
                 $nombre1,
                 $nombre2,

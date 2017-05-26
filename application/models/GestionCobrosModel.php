@@ -13,7 +13,7 @@ class GestionCobrosModel extends CI_MODEL {
         return $this->db->count_all('pedido');
     }
     
-    function listarProductosClientes($idCliente) {
+    function listarPendientesClientes($idCliente) {
     
     $cliente = array();
     try {
@@ -21,7 +21,7 @@ class GestionCobrosModel extends CI_MODEL {
               SELECT
               P.idpedido,
               P.diferidoAPagar,
-              P.numeroPedido
+              P.numeroPedido,
               COUNT(PA.num_pago)
               FROM pedido P 
               INNER JOIN productos PR ON PR.idproductos=P.fkProducto
@@ -30,7 +30,6 @@ class GestionCobrosModel extends CI_MODEL {
               LEFT JOIN forma_pago FP ON FP.idformapago=fkFormaPago
               LEFT JOIN pago PA ON P.idpedido=PA.fkPedido
               WHERE P.fkUsuario = ?
-              AND P.idpedido=?
               AND U.flestado=1
               AND P.flEstado=1
               ");
@@ -40,16 +39,16 @@ class GestionCobrosModel extends CI_MODEL {
               $idpedido,
               $cantAPagar,
               $numPedido,
-              $totaldebe
+              $totalpagado
               );
        while ($stmt->fetch()) {
          
         $cliente[] = array(
           'idpedido' => $idpedido,
-          'unidades_vendidas' => $unidades_vendidas,
-          'nombreForma' => $cantAPagar,
-          'nombreTipo' => $numPedido,
-          'totalPagado' => $totaldebe,
+          'unidades_vendidas' => $cantAPagar,
+          'cantAPagar' => $cantAPagar,
+          'numPedido' => $numPedido,
+          'totalpagado' => $totalpagado,
         );
       }
       $stmt->close();

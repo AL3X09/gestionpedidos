@@ -3,7 +3,8 @@
  */
 var getUrl = window.location;
 var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/"; // lineas servidor local
-
+var td;
+var iduser=[];
 $(document).ready(function () {
     cargarTabla();
 
@@ -52,7 +53,7 @@ function cargarTabla() {
         },
         success: function (data) {
             tabla.empty();
-            console.log(data)
+            
             $.each(data, function (k, v) {
 
                 //permiso=v.permisos.split(",");

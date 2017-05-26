@@ -8,7 +8,7 @@ class GestionCobros extends CI_Controller {
     public function __construct() {
         parent:: __construct();
         $this->load->helper(array('url', 'form', 'array', 'html'));
-        $this->load->model(array('CuotasCreditoModel', '',''));
+        $this->load->model(array('CuotasCreditoModel', 'GestionCobrosModel',''));
     }
     //
 	public function index()
@@ -19,20 +19,20 @@ class GestionCobros extends CI_Controller {
 	//llamo vista de formulirio para perfiles
    
     //
-    public function listarCuotas()
+    public function listarCuotasPendientes()
     {
-        $lista = $this->VendedoresModel->listar();
+        $idCliente=$_POST['idCliente'];
+        //$idPedido=$_POST['idPedido'];
+        $lista = $this->VendedoresModel->listarPendientes($idCliente);
         header('Content-type: application/json; charset=utf-8');
         echo json_encode($lista);
     }
     
-    public function listarCuotasID()
-    {
-        $idproducto = $_POST['idProducto'];
-        $datosP = $this->ProductosModel->listarProductobyID($idproducto);
-        header('Content-type: application/json; charset=utf-8');
-        echo json_encode($datosP);
-    }
-
+    public function generarCobroFactura()
+	{
+            session_start();
+            $this->load->view('gestionCobrosfactura');
+	}
+    
 
 }

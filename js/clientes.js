@@ -96,15 +96,16 @@ function listarCuotasCliente() {
       tbody.empty();
 
       $.each(data, function (k, v) {
-         console.log(v.fechaPedido)
+         
 
          var RFECHA = v.fechaPedido;
-         
-         for (i = 0; i < parseInt(v.numDias); i++) {
+         j=parseInt(v.diferidoAPagar);
+         for (i = 0; i <= parseInt(v.diferidoAPagar); i++) {
            
             var td = "<tr><td>" + RFECHA + "</td>";
+            td += "<td>" + v.nombreProducto + "</td>";
             td += "<td>" + v.totalPagado + "</td>";
-            td += "<td>" + v.totalPagado + "</td></tr>";
+            td += "<td>" + j + "</td></tr>";
             tbody.append(td);
             var aFecha = RFECHA.split('-');
             var aMes=parseInt(aFecha[1])+1;
@@ -116,6 +117,7 @@ function listarCuotasCliente() {
             var fecha = aAnio + '-' + aMes + '-' + v.numDias;
             delete RFECHA;
             RFECHA = fecha;
+            j--;
             
          }
 
@@ -124,5 +126,9 @@ function listarCuotasCliente() {
    });
 
 }
+
+function closeWin() {
+    window.close();   // Closes the new window
+} 
 
 

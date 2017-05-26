@@ -61,13 +61,13 @@
 
     <nav class="nav-extended deep-orange">
       <div class="nav-wrapper">
-        <a id="logo-container" href="#" class="brand-logo"><img src="<?php echo base_url(); ?>img/logo.gif" width="150" height="90"></a>
+        <a id="logo-container" href="" class="brand-logo"><img src="<?php echo base_url(); ?>img/logo.gif" width="150" height="90"></a>
       </div>
       <div class="nav-content">
-        <span class="nav-title">Clientes</span>
+        <!--<span class="nav-title">Clientes</span>
         <a href="#" data-activates="slide-out" class="btn-floating btn-large halfway-fab waves-effect waves-light teal pulse" id="menubutton">
           <i class="material-icons">menu</i>
-        </a>
+        </a>-->
       </div>
     </nav>
 
@@ -75,29 +75,36 @@
       <div class="container">
 
         <h4 class="header center orange-text">CUOTAS CREDITO PARA EL CLIENTE <span id=""><?php
-      echo $_GET['nombre'] . ' ' . $_GET['apellido'];
-      ?></span></h4>
+            echo $_GET['nombre'] . ' ' . $_GET['apellido'];
+            ?></span></h4>
 
       </div>
     </div>
 
-    <div class="container" id="administracion">
+    <div class="container">
       <div class="row">
 
         <table class="striped responsive-table">
-        <thead>
-          <tr>
+          <thead>
+            <tr>
               <th>Fecha</th>
-              <th>Valor</th>
-              <th>N° Cuota</th>
-          </tr>
-        </thead>
+              <th>Producto</th>
+              <th>Valor a Cancelar</th>
+              <th>Cuota</th>
+            </tr>
+          </thead>
 
-        <tbody id="cuotasAcobrar">
-          
-        </tbody>
-      </table>
+          <tbody id="cuotasAcobrar">
 
+          </tbody>
+        </table>
+
+      </div>
+
+      <div class="row">
+        <div class="col l6 s12">
+          <a class="waves-effect waves-light btn-large" onclick="closeWin()">Cerrar</a>
+        </div>
       </div>
     </div>
 
@@ -145,10 +152,10 @@
     <script src="<?php echo base_url(); ?>js/materialize.js"></script>
     <script src="<?php echo base_url(); ?>js/clientes.js"></script>
     <script>
-      
+
       $(document).ready(function () {
         listarCuotasCliente();
-         
+
       });
     </script>
     <script src="<?php echo base_url(); ?>librerias/jsgrid-1.5.3/db.js"></script>

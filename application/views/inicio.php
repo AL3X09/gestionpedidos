@@ -89,7 +89,7 @@
             </div>
             <div class="card-content">
               <p>Nombre</p>
-              <p>presio</p>
+              <p>Precio</p>
             </div>
           </div>
         </div>
